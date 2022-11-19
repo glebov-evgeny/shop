@@ -2,7 +2,7 @@
   <header class="header" id="header">
     <div class="container header__container">
       <div class="header__logos">
-        <img src="@/assets/images/header/tiger.png" class="header__logo" alt="logo" />
+        <img src="@/assets/images/header/logo-mob.png" class="header__logo" alt="logo" />
       </div>
       <div class="header__menu" v-if="showMenuButton" @click="openMenu">
         <svg class="ham hamRotate hamR" viewBox="0 0 100 100" width="40" ref="ham">
@@ -35,7 +35,8 @@
         </div>
       </nav>
       <div class="header__information" v-if="!showMenuButton">
-        <a :href="`tel:${phoneMobileShort}`" class="header__phone">{{ phoneMobile }}</a>
+        <a :href="`tel:${phoneMobileShort1}`" class="header__phone">{{ phoneMobile1 }}</a>
+        <a :href="`tel:${phoneMobileShort2}`" class="header__phone">{{ phoneMobile2 }}</a>
         <button class="header__button" v-if="this.$store.state.token" @click.stop="logout">{{ $t('logout') }}</button>
         <button class="header__button" v-else @click.stop="popupIsOpen">{{ $t('login') }}</button>
       </div>
@@ -62,8 +63,10 @@ export default {
       showMenuBreakpoint: 767,
       isOpenMenu: false,
       windowWidth: null,
-      phoneMobileShort: '+79162176557',
-      phoneMobile: '+7 (916) 217-65-57',
+      phoneMobileShort1: '+79162176557',
+      phoneMobile1: '+7 (916) 217-65-57',
+      phoneMobileShort2: '+79162176557',
+      phoneMobile2: '+7 (916) 217-65-57',
       isLogin: false,
     };
   },

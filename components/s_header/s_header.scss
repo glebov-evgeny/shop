@@ -1,10 +1,6 @@
 @import '@/assets/styles/tools/mixins';
 
 .header {
-  @include _768 {
-    padding: rem(10) 0;
-  }
-
   position: fixed;
   z-index: 50;
   top: 0;
@@ -181,9 +177,9 @@
     }
   }
   &._scrolled {
-    background-color: var(--color-white);
-    .header__nav {
-      background-color: var(--color-white);
-    }
+    // background-color: var(--color-white);
+    // .header__nav {
+    //   background-color: var(--color-white);
+    // }
   }
 }

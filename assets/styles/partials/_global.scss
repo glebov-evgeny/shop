@@ -11,7 +11,7 @@ body {
   align-items: stretch;
   min-height: 100vh;
   color: var(--color-black);
-  background-color: var(--color-yellow);
+  background-color: var(--color-white);
   font-family: 'Comfortaa', serif;
   font-size: 16px;
   font-weight: 400;
@@ -50,6 +50,9 @@ a {
 .main {
   min-height: calc(100vh - rem(50));
   padding: rem(60) 0 rem(25);
+  @media all and (min-width: 1200px) {
+    padding: rem(65) 0 rem(25);
+  }
   &__horizontal {
     height: 100vh;
   }
@@ -100,4 +103,8 @@ a {
     margin: 0 .2rem;
     font-size: .8rem;
   }
+}
+
+.clearfix {
+  min-height: 6000px;
 }

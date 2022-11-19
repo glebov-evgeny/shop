@@ -3,17 +3,17 @@
     "menuItems": [
       {
         "name": "index1",
-        "anchor": "Обо мне",
+        "anchor": "Ссылка1",
         "target": "section01"
       },
       {
         "name": "index2",
-        "anchor": "Портфолио",
+        "anchor": "Ссылка2",
         "target": "section02"
       },
       {
         "name": "index3",
-        "anchor": "Контакты",
+        "anchor": "Ссылка3",
         "target": "section012"
       }
     ],
@@ -24,17 +24,17 @@
     "menuItems": [
       {
         "name": "index1",
-        "anchor": "About",
+        "anchor": "Link1",
         "target": "section01"
       },
       {
         "name": "index2",
-        "anchor": "Portfolio",
+        "anchor": "Link2",
         "target": "section02"
       },
       {
         "name": "index3",
-        "anchor": "Сontacts",
+        "anchor": "Link3",
         "target": "section012"
       }
     ],
