@@ -35,8 +35,10 @@
         </div>
       </nav>
       <div class="header__information" v-if="!showMenuButton">
-        <a :href="`tel:${phoneMobileShort1}`" class="header__phone">{{ phoneMobile1 }}</a>
-        <a :href="`tel:${phoneMobileShort2}`" class="header__phone">{{ phoneMobile2 }}</a>
+        <div class="header__information-box">
+          <a :href="`tel:${phoneMobileShort1}`" class="header__phone">{{ phoneMobile1 }}</a>
+          <a :href="`tel:${phoneMobileShort2}`" class="header__phone">{{ phoneMobile2 }}</a>
+        </div>
         <button class="header__button" v-if="this.$store.state.token" @click.stop="logout">{{ $t('logout') }}</button>
         <button class="header__button" v-else @click.stop="popupIsOpen">{{ $t('login') }}</button>
       </div>

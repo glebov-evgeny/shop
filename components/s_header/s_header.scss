@@ -83,6 +83,10 @@
     justify-content: flex-end;
     align-items: center;
     flex-grow: 2;
+    &-box{
+      display: flex;
+      flex-direction: column;
+    }
   }
   &__phone {
     font-size: rem(14);
@@ -104,7 +108,7 @@
     margin-left: rem(15);
     background: transparent;
     border: rem(1) solid var(--color-black);
-    border-radius: rem(60);
+    border-radius: rem(5);
     font-size: rem(14);
     font-weight: 600;
     cursor: pointer;
