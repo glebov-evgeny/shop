@@ -1,8 +1,28 @@
 @import '@/assets/styles/tools/mixins';
 
-.s-footer {
+.footer {
   min-height: rem(50);
-  padding: 1rem;
-  background: rgba(211, 90, 90, 0.5);
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  padding: 1rem 0;
+  color: var(--color-white);
+  background: var(--color-black);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__date {
+    font-size: rem(12);
+  }
+  &__lang {
+    display: flex;
+    &-icon {
+      font-size: rem(12);
+      &._line {
+        margin: 0 rem(5);
+      }
+      &._active {
+        font-weight: 900;
+      }
+    }
+  }
 }

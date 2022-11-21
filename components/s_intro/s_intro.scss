@@ -1,5 +1,55 @@
 @import '@/assets/styles/tools/mixins';
 
 .intro {
+  padding: rem(15) 0;
   background: #eee;
+  &__container {
+    @include _768 {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  &__pic {
+    @include _768 {
+      margin: 0;
+    }
+    @include _1200 {
+      min-height: rem(400);
+    }
+
+    width: 100%;
+    min-height: rem(300);
+    margin-bottom: rem(30);
+    background: #ccc;
+    border-radius: rem(10);
+  }
+  &__title {
+    @include _768 {
+      font-size: rem(24);
+      text-align: left;
+    }
+    @include _1200 {
+      font-size: rem(32);
+    }
+
+    font-size: rem(18);
+    line-height: 135%;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  &__content,
+  &__image {
+    @include _768 {
+      width: 48%;
+    }
+  }
+  &__content {
+    @include _768 {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

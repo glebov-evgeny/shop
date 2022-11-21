@@ -1,9 +1,21 @@
 <template>
-  <footer class="s-footer">
-    <p></p>
+  <footer class="footer">
+    <div class="container footer__container">
+      <p class="footer__date">&#169; {{ new Date().getFullYear() }}. {{ $t('dateinfo') }}</p>
+      <div class="footer__lang">
+        <nuxt-link :to="switchLocalePath('ru')" class="footer__lang-icon _active">Ru</nuxt-link>
+        <span class="footer__lang-icon _line">/</span>
+        <nuxt-link :to="switchLocalePath('en')" class="footer__lang-icon">En</nuxt-link>
+      </div>
+    </div>
   </footer>
 </template>
-
+<nuxt-link :to="switchLocalePath('ru')" class="select__lang-link">
+  <div class="s-footer__lang-logo">ru</div>
+</nuxt-link>
+<nuxt-link :to="switchLocalePath('en')" class="select__lang-link">
+  <div class="s-footer__lang-logo">en</div>
+</nuxt-link>
 <script>
 import './s_footer.scss';
 
@@ -25,3 +37,5 @@ export default {
   mounted() {},
 };
 </script>
+
+<i18n lang="json" src="./s_footer.json" />

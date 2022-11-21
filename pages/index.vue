@@ -3,12 +3,14 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
       <s-intro />
-      <div class="clearfix"></div>
+      <s-switchcards />
+      <!-- <div class="clearfix"></div> -->
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
         <m-form-login v-else className="_compact" @changeFormPopup="changeFormPopup" />
       </s-popup>
     </main>
+    <s-footer />
   </div>
 </template>
 

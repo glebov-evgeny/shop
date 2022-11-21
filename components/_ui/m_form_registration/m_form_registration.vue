@@ -2,8 +2,8 @@
   <form class="form" :class="currentClass" @submit="validateForm">
     <div class="form__wrapper" v-if="formWasSend">
       <div class="form__info">
-        <h3 class="form__title">Registration</h3>
-        <p class="form__description">Description text for information.</p>
+        <h3 class="form__title">{{ $t('title') }}</h3>
+        <p class="form__description">{{ $t('description') }}</p>
       </div>
       <div class="form__content">
         <label class="form__label">
@@ -12,7 +12,7 @@
             type="email"
             class="form__input"
             :class="emailError ? 'error' : ''"
-            placeholder="Почта"
+            :placeholder="$t('email')"
           />
         </label>
         <label class="form__label">
@@ -21,12 +21,14 @@
             type="password"
             class="form__input"
             :class="passwordError ? 'error' : ''"
-            placeholder="Пароль"
+            :placeholder="$t('password')"
           />
         </label>
         <p class="form__error" v-if="errorMessageShow">{{ errorMessageText }}</p>
-        <button class="form__button" type="submit">Отправить</button>
-        <button class="form__change" type="button" @click.stop="changeFormLoginOrRegistration">- войти -</button>
+        <button class="form__button" type="submit">{{ $t('send') }}</button>
+        <button class="form__change" type="button" @click.stop="changeFormLoginOrRegistration">
+          - {{ $t('toggleOption') }} -
+        </button>
       </div>
     </div>
     <div class="form__wrapper" v-else>
@@ -106,8 +108,14 @@ export default {
         const user = await this.$fire.auth.createUserWithEmailAndPassword(this.email, this.password);
         // добавляю информацию о том, что пользователь залогинен в store и localStorage
         this.$store.commit('setToken', user.user.uid);
-        localStorage.setItem('user', user.user.uid);
-        this.$cookies.set('user', user.user.uid);
+        // localStorage.setItem('user', user.user.uid);
+        // console.log(user.user);
+        const cookieDataUser = { email: user.user.email, id: user.user.uid };
+        // this.$cookies.set('user', user.user.uid);
+        this.$cookies.set('user', cookieDataUser, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7, // 7 дней
+        });
         // убираю сообщение об ошибках с бэка
         this.errorMessageText = '';
         this.errorMessageShow = false;
@@ -133,3 +141,5 @@ export default {
   },
 };
 </script>
+
+<i18n lang="json" src="./m_form_registration.json" />

@@ -1,0 +1,18 @@
+{
+  "ru": {
+    "title": "Регистрация.",
+    "description": "Небольшое объяснение что про что.",
+    "email": "Почта",
+    "password": "Пароль",
+    "send": "Отправить",
+    "toggleOption": "войти"
+  },
+  "en": {
+    "title": "Registration.",
+    "description": "A little explanation about what.",
+    "email": "email",
+    "password": "password",
+    "send": "send",
+    "toggleOption": "login"
+  }
+}

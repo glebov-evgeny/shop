@@ -1,10 +1,8 @@
 {
   "ru": {
-    "title": "Тест, <br /><span>тест</span> тест.",
-    "text": "Русский язык русский язык русский язык, русский язык русский язык русский язык, русский язык, русский язык, русский язык, русский язык?"
+    "title": "Промо штука <br/> Главная информация<br/> Красивая картинка"
   },
   "en": {
-    "title": "Lorem, <br /><span>ipsum</span> dolor.",
-    "text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus ullam vitae quos quibusdam impedit iste, officiis aut praesentium distinctio deserunt similique qui possimus tempore fugiat quas esse perferendis porro?"
+    "title": "Lorem <br /><span>ipsum</span> dolor <br/> Lorem est si"
   }
 }
