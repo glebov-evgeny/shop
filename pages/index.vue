@@ -3,17 +3,21 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
       <s-intro />
+      <s-switchcards />
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
         <m-form-login v-else className="_compact" @changeFormPopup="changeFormPopup" />
       </s-popup>
     </main>
+    <s-footer />
   </div>
 </template>
 
 <script>
-import MFormRegistration from '@/components/_ui/m_form_registration/m_form_registration';
-import MFormLogin from '@/components/_ui/m_form_login/m_form_login';
+// eslint-disable-next-line import/extensions
+import MFormRegistration from '@/components/_ui/m_form_registration/m_form_registration.vue';
+// eslint-disable-next-line import/extensions
+import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
 
 export default {
   components: {
@@ -48,9 +52,9 @@ export default {
 
     isUserLogged() {
       // Проверяю cookies, если user есть - беру значение в store
-      // if (this.$cookies.get('user')) {
-      //   this.$store.commit('setToken', this.$cookies.get('user'));
-      // }
+      if (this.$cookies.get('user')) {
+        this.$store.commit('setToken', this.$cookies.get('user'));
+      }
       console.log('d');
     },
     popupIsOpen() {

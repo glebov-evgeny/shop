@@ -12,7 +12,7 @@
             type="email"
             class="form__input"
             :class="emailError ? 'error' : ''"
-            :placeholder="$t('email')"
+            placeholder="v"
           />
         </label>
         <label class="form__label">
@@ -21,7 +21,7 @@
             type="password"
             class="form__input"
             :class="passwordError ? 'error' : ''"
-            :placeholder="$t('password')"
+            placeholder="s"
           />
         </label>
         <p class="form__error" v-if="errorMessageShow">{{ errorMessageText }}</p>

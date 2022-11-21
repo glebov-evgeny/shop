@@ -1,13 +1,29 @@
 <template>
   <div class="wrapper">
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
-    <main class="main">...</main>
+    <main class="main">
+      <s-intro />
+      <s-switchcards />
+      <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
+        <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
+        <m-form-login v-else className="_compact" @changeFormPopup="changeFormPopup" />
+      </s-popup>
+    </main>
+    <s-footer />
   </div>
 </template>
 
 <script>
+// eslint-disable-next-line import/extensions
+import MFormRegistration from '@/components/_ui/m_form_registration/m_form_registration.vue';
+// eslint-disable-next-line import/extensions
+import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
+
 export default {
-  components: {},
+  components: {
+    MFormRegistration,
+    MFormLogin,
+  },
   middleware: 'auth',
   data() {
     return {
