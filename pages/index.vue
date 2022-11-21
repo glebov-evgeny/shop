@@ -55,7 +55,6 @@ export default {
       if (this.$cookies.get('user')) {
         this.$store.commit('setToken', this.$cookies.get('user'));
       }
-      console.log('d');
     },
     popupIsOpen() {
       this.popuIsShow = true;
