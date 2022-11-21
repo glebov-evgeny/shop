@@ -10,12 +10,7 @@
     </div>
   </footer>
 </template>
-<nuxt-link :to="switchLocalePath('ru')" class="select__lang-link">
-  <div class="s-footer__lang-logo">ru</div>
-</nuxt-link>
-<nuxt-link :to="switchLocalePath('en')" class="select__lang-link">
-  <div class="s-footer__lang-logo">en</div>
-</nuxt-link>
+
 <script>
 import './s_footer.scss';
 
