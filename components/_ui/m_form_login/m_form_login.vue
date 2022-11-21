@@ -114,7 +114,6 @@ export default {
           maxAge: 60 * 60 * 24 * 7, // 7 дней
         });
         // this.$cookies.set('user', user.user.uid);
-
         // убираю сообщение об ошибках с бэка
         this.errorMessageText = '';
         this.errorMessageShow = false;
