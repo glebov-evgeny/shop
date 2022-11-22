@@ -2,6 +2,13 @@
   <section class="switchcards">
     <div class="container switchcards__container">
       <h2 class="switchcards__title title" v-html="$t('title')"></h2>
+      <div class="">
+        <!-- <v-select
+          :regions="regions"
+          label="Выбрать регион"
+          solo
+        ></v-select> -->
+      </div>
       <div>{{ cards }}</div>
     </div>
   </section>
@@ -18,6 +25,7 @@ export default {
   data() {
     return {
       cards: [],
+      regions: ['usa', 'pol'],
     };
   },
   methods: {

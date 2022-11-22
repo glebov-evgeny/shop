@@ -86,42 +86,13 @@ export default {
   axios: {
     debug: false,
   },
-
-  // auth: {
-  //   redirect: {
-  //     login: '/not',
-  //     logout: '/yes',
-  //     callback: '/sa',
-  //     home: false,
-  //   },
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         property: 'user',
-  //         global: true,
-  //         // required: true,
-  //         // type: 'Bearer'
-  //       },
-  //       user: {
-  //         property: 'user',
-  //         autoFetch: false,
-  //       },
-  //       endpoints: {
-  //         login: { url: '/api/login', method: 'post' },
-  //         logout: { url: '/api/auth/logout', method: 'post' },
-  //         user: { url: '/', method: 'get' },
-  //       },
-  //     },
-  //   },
-  // },
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
       lang: 'ru',
     },
   },
   loading: '~/components/_ui/a_loader/a_loader.vue',
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+
   build: {
     transpile: ['gsap'],
   },
