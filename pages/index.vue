@@ -2,7 +2,7 @@
   <div class="wrapper">
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
-      <s-intro />
+      <!-- <s-intro /> -->
       <s-switchcards />
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />

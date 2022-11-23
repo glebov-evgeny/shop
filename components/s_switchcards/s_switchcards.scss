@@ -38,7 +38,7 @@
       border-radius: var(--border-radius-sm);
       transition: 0.3s;
       &._active {
-        height: rem(62);
+        height: rem(92);
       }
     }
     &-current {
@@ -50,6 +50,11 @@
       transition: 0.2s;
       &:hover {
         background: var(--color-yellow);
+      }
+      &._current {
+        opacity: 0.6;
+        cursor: default;
+        user-select: none;
       }
     }
   }

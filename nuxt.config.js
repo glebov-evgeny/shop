@@ -45,6 +45,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    // '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
