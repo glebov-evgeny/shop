@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="switchcards__region-block">
-        <m-card v-for="card in cards" :key="card.name" :name="card.name" />
+        <m-card v-for="card in cards" :key="card.name" :name="card.name" @cardClickHandler="cardClickHandler" />
       </div>
     </div>
   </section>
@@ -86,6 +86,9 @@ export default {
       this.regionsCurrent = event.target.getAttribute('data-option');
       this.toggleList = false;
       this.fetchCards();
+    },
+    cardClickHandler(item) {
+      console.log(item);
     },
   },
   mounted() {

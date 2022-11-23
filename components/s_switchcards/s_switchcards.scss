@@ -13,6 +13,12 @@
       @include _576 {
         grid-template-columns: repeat(3, 1fr);
       }
+      @include _992 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @include _1200 {
+        grid-template-columns: repeat(5, 1fr);
+      }
 
       display: grid;
       grid-template-columns: repeat(2, 1fr);

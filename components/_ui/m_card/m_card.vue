@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="onCardClick">
     <p>{{ name }}</p>
   </div>
 </template>
@@ -17,6 +17,10 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    onCardClick() {
+      this.$emit('cardClickHandler', this.name);
+    },
+  },
 };
 </script>
