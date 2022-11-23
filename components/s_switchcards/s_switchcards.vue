@@ -85,7 +85,7 @@ export default {
       event.target.classList.add('_current');
       this.regionsCurrent = event.target.getAttribute('data-option');
       this.toggleList = false;
-      this.fetchCards();
+      // this.fetchCards();
     },
     cardClickHandler(item) {
       console.log(item);
