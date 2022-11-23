@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: rem(50);
+  min-height: rem(40);
   padding: rem(5) 0;
   background-color: var(--color-yellow);
   transition: 0.4s;
@@ -21,14 +21,14 @@
   }
   &__logo {
     @include _1200 {
-      max-width: rem(45);
+      max-width: rem(40);
     }
 
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    max-width: rem(50);
+    max-width: rem(40);
     font-size: rem(20);
     font-weight: 900;
     text-transform: uppercase;
@@ -95,7 +95,7 @@
   &__button {
     @include _1200 {
       max-width: rem(150);
-      min-height: rem(45);
+      min-height: rem(40);
       margin-left: rem(25);
     }
 

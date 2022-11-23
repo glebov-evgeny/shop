@@ -49,9 +49,9 @@ a {
 
 .main {
   min-height: calc(100vh - rem(50));
-  padding: rem(60) 0 0;
+  padding: rem(50) 0 0;
   @media all and (min-width: 1200px) {
-    padding: rem(65) 0 0;
+    padding: rem(50) 0 0;
   }
   &__horizontal {
     height: 100vh;
