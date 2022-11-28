@@ -26,6 +26,7 @@ import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
 import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue';
 // eslint-disable-next-line import/extensions
 import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
+import getPayment from '@/api/getPayment';
 
 export default {
   components: {
@@ -76,8 +77,9 @@ export default {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
     paymentsBtnClick() {
-      this.popuIsShowContent = true;
-      this.isPaymentForm = true;
+      // this.popuIsShowContent = true;
+      // this.isPaymentForm = true;
+      getPayment();
     },
     popupIsClosed() {
       this.popuIsShow = false;
