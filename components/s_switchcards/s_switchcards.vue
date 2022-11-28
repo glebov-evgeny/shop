@@ -22,6 +22,10 @@
         </div>
       </div>
       <div class="switchcards__region-block">
+        <div class="card_test">
+          <button class="header__button" v-if="this.$store.state.token" @click="paymentsLogic">Если залогиненен</button>
+          <button class="header__button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
+        </div>
         <m-card v-for="card in cards" :key="card.name" :name="card.name" @cardClickHandler="cardClickHandler" />
       </div>
     </div>
@@ -89,6 +93,12 @@ export default {
     },
     cardClickHandler(item) {
       console.log(item);
+    },
+    paymentsLogic() {
+      this.$emit('paymentsBtnClick');
+    },
+    popupIsOpen() {
+      this.$emit('popupIsOpen');
     },
   },
   mounted() {

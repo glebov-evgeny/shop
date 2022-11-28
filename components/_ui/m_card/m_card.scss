@@ -7,3 +7,14 @@
   background: var(--color-lightyellow);
   border-radius: var(--border-radius-sm);
 }
+
+/* Jast for testing */
+
+.card_test {
+  min-height: rem(20);
+  padding: rem(12);
+  background: #c5c2c2;
+  border: rem(1) solid #b9b7b7;
+  border-radius: rem(12);
+  cursor: pointer;
+}
