@@ -101,6 +101,7 @@ export default {
   env: {
     SITE_FB_PIXEL: process.env.SITE_FB_PIXEL,
     SITE_GTM: process.env.SITE_GTM,
+    ADMIN_SITE: process.env.ADMIN_SITE,
   },
 
   publicRuntimeConfig: {

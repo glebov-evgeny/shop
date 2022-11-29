@@ -3,17 +3,17 @@
     "menuItems": [
       {
         "name": "index1",
-        "anchor": "Ссылка1",
+        "anchor": "...",
         "target": "section01"
       },
       {
         "name": "index2",
-        "anchor": "Ссылка2",
+        "anchor": "...",
         "target": "section02"
       },
       {
         "name": "index3",
-        "anchor": "Ссылка3",
+        "anchor": "...",
         "target": "section012"
       }
     ],

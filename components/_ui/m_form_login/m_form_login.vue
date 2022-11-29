@@ -47,6 +47,7 @@
 
 <script>
 import '../m_form/m_form';
+import redirectUser from '~/api/redirectUser';
 
 export default {
   name: 'm-form-login',
@@ -119,7 +120,9 @@ export default {
         this.errorMessageShow = false;
         // скрываю форму и показываю "thank-success"
         this.formWasSend = false;
-        // this.$router.push('/main')
+        // редирект на страницу
+        // this.$router.push('/account');
+        await redirectUser(this.$router, this.$cookies);
       } catch (error) {
         if (error.message === 'Firebase: Error (auth/wrong-password).') {
           this.somethingWrong('Неправильный логин/пароль.');
@@ -158,7 +161,8 @@ export default {
       this.errorMessageShow = false;
       // скрываю форму и показываю "thank-success"
       this.formWasSend = false;
-      // this.$router.push('/main')
+      // редирект на страницу
+      await redirectUser(this.$router, this.$cookies);
     },
     changeFormLoginOrRegistration() {
       this.$emit('changeFormPopup');

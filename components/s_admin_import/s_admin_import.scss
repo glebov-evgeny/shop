@@ -1,0 +1,52 @@
+@import '@/assets/styles/tools/mixins';
+
+.admin_import {
+  min-height: rem(150);
+  padding: rem(25) 0;
+  background: #cfcccc;
+  &__title {
+    @include _768 {
+      font-size: rem(16);
+    }
+    @include _1200 {
+      font-size: rem(16);
+    }
+
+    margin-bottom: rem(25);
+    font-size: rem(14);
+    line-height: 135%;
+  }
+  &__box {
+    @include _768 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: rem(12);
+  }
+  &__field {
+    &-information {
+      margin-bottom: rem(5);
+      font-size: rem(14);
+    }
+  }
+  &-test {
+    margin: rem(20) auto;
+    font-size: rem(10);
+    text-align: center;
+  }
+  &__button {
+    @include _768 {
+      transform: translateX(calc(100% + rem(12)));
+    }
+
+    width: 100%;
+    min-height: rem(45);
+    background: var(--color-yellow);
+    border: 0.125rem solid var(--color-yellow);
+    border-radius: var(--border-radius-sm);
+    font-size: rem(14);
+    font-weight: 600;
+  }
+}

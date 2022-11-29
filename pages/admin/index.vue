@@ -2,11 +2,12 @@
   <div class="wrapper">
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
-      <s-intro />
-      <s-switchcards />
+      <s-admin-intro />
+      <s-admin-import />
+      <s-dump />
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
-        <m-form-login v-else className="_compact" @changeFormPopup="changeFormPopup" />
+        <m-form-login v-if="!registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
       </s-popup>
     </main>
     <s-footer />
@@ -48,9 +49,7 @@ export default {
         htmlWrapper.style.overflow = 'initial';
       }
     },
-    isUserLogged() {
-      // Проверяю cookies, если user есть - беру значение в store
-    },
+
     popupIsOpen() {
       this.popuIsShow = true;
     },
@@ -59,6 +58,12 @@ export default {
     },
     popupIsClosed() {
       this.popuIsShow = false;
+    },
+    isUserLogged() {
+      // Проверяю cookies, если user есть - беру значение в store
+      if (this.$cookies.get('user')) {
+        this.$store.commit('setToken', this.$cookies.get('user'));
+      }
     },
   },
 };

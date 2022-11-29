@@ -28,53 +28,53 @@
       margin-bottom: rem(10);
       font-size: rem(14);
     }
-    &-toggle {
-      display: flex;
-      align-items: center;
-      min-height: rem(45);
-      padding: rem(12);
-      background: var(--color-white);
-      border-radius: var(--border-radius-sm);
-      cursor: pointer;
-    }
-    &-select {
-      @include _576 {
-        max-width: rem(200);
-      }
+    // &-toggle {
+    //   display: flex;
+    //   align-items: center;
+    //   min-height: rem(45);
+    //   padding: rem(12);
+    //   background: var(--color-white);
+    //   border-radius: var(--border-radius-sm);
+    //   cursor: pointer;
+    // }
+    // &-select {
+    //   @include _576 {
+    //     max-width: rem(200);
+    //   }
 
-      position: relative;
-    }
-    &-list {
-      position: absolute;
-      top: rem(50);
-      left: 0;
-      overflow: hidden;
-      width: 100%;
-      height: 0;
-      background: var(--color-white);
-      border-radius: var(--border-radius-sm);
-      transition: 0.3s;
-      &._active {
-        height: rem(92);
-      }
-    }
-    &-current {
-      font-size: rem(14);
-    }
-    &-option {
-      padding: rem(8) rem(12);
-      font-size: rem(14);
-      cursor: pointer;
-      transition: 0.2s;
-      &:hover {
-        background: var(--color-yellow);
-      }
-      &._current {
-        opacity: 0.6;
-        cursor: default;
-        user-select: none;
-        pointer-events: none;
-      }
-    }
+    //   position: relative;
+    // }
+    // &-list {
+    //   position: absolute;
+    //   top: rem(50);
+    //   left: 0;
+    //   overflow: hidden;
+    //   width: 100%;
+    //   height: 0;
+    //   background: var(--color-white);
+    //   border-radius: var(--border-radius-sm);
+    //   transition: 0.3s;
+    //   &._active {
+    //     height: rem(92);
+    //   }
+    // }
+    // &-current {
+    //   font-size: rem(14);
+    // }
+    // &-option {
+    //   padding: rem(8) rem(12);
+    //   font-size: rem(14);
+    //   cursor: pointer;
+    //   transition: 0.2s;
+    //   &:hover {
+    //     background: var(--color-yellow);
+    //   }
+    //   &._current {
+    //     opacity: 0.6;
+    //     cursor: default;
+    //     user-select: none;
+    //     pointer-events: none;
+    //   }
+    // }
   }
 }

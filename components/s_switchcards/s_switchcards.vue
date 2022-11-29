@@ -4,22 +4,13 @@
       <h2 class="switchcards__title title" v-html="$t('title')"></h2>
       <div class="switchcards__region-box">
         <p class="switchcards__region-title">Выбор региона:</p>
-        <div class="switchcards__region-select">
-          <div class="switchcards__region-toggle" @click="toggleListHandler">
-            <p class="switchcards__region-current" :data-current="regionsCurrent">{{ regionsCurrent }}</p>
-          </div>
-          <div class="switchcards__region-list" :class="[toggleList ? '_active' : '']" @click="toggleOption">
-            <p
-              v-for="regions in regionsList"
-              class="switchcards__region-option"
-              :class="regions.currentClass"
-              :data-option="regions.code"
-              :key="regions.code"
-            >
-              {{ regions.code }}
-            </p>
-          </div>
-        </div>
+        <MCardSelect
+          :toggleList="toggleList"
+          :regionsList="regionsList"
+          :regionsCurrent="regionsCurrent"
+          @toggleListHandler="toggleListHandler"
+          @toggleOption="toggleOption"
+        />
       </div>
       <div class="switchcards__region-block">
         <div class="card_test">
@@ -39,11 +30,13 @@ import {
 } from 'firebase/firestore';
 
 import MCard from '@/components/_ui/m_card/m_card';
+import MCardSelect from '@/components/_ui/m_select/m_select';
 
 export default {
   name: 's-switchcards',
   components: {
     MCard,
+    MCardSelect,
   },
   data() {
     return {
