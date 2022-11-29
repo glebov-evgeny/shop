@@ -13,11 +13,11 @@
         />
       </div>
       <div class="switchcards__region-block">
-        <div class="card_test">
-          <button class="header__button" v-if="this.$store.state.token" @click="paymentsLogic">Если залогиненен</button>
-          <button class="header__button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
-        </div>
         <m-card v-for="card in cards" :key="card.name" :name="card.name" @cardClickHandler="cardClickHandler" />
+      </div>
+      <div class="card_test">
+        <button class="card_test-button" v-if="this.$store.state.token" @click="paymentsLogic">Если залогиненен</button>
+        <button class="card_test-button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
       </div>
     </div>
   </section>
@@ -82,7 +82,7 @@ export default {
       event.target.classList.add('_current');
       this.regionsCurrent = event.target.getAttribute('data-option');
       this.toggleList = false;
-      // this.fetchCards();
+      this.fetchCards();
     },
     cardClickHandler(item) {
       console.log(item);
@@ -95,7 +95,7 @@ export default {
     },
   },
   mounted() {
-    // this.fetchCards();
+    this.fetchCards();
   },
 };
 </script>
