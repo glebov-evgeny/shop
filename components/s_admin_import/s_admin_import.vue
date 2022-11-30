@@ -34,10 +34,11 @@
               placeholder="..."
             />
           </div>
-          <button class="admin_import__button" @click="importCard">Добавить</button>
+          <button class="admin_import__button" @click="validateForm">Добавить</button>
         </div>
       </div>
-      <p class="admin_import-test">dczrfz byajhvfwbz</p>
+      <!-- <button class="admin_import-test-btn" @click="testImport">import</button>
+      <p class="admin_import-test">{{listResult}}</p> -->
     </div>
   </section>
 </template>
@@ -46,6 +47,8 @@
 import './s_admin_import.scss';
 import MCardSelect from '@/components/_ui/m_select/m_select';
 import MCardSelectNominal from '~/components/_ui/m_select_nominal/m_select_nominal';
+import { serverTimestamp } from 'firebase/firestore';
+import addCard from '~/api/addCard';
 
 export default {
   name: 's-admin-import',
@@ -60,39 +63,33 @@ export default {
       regionsList: [
         {
           code: 'usa',
-          currentClass: '_current',
         },
         {
           code: 'pol',
-          currentClass: '',
         },
         {
           code: 'bra',
-          currentClass: '',
         },
       ],
       regionsCurrent: 'usa',
       nominalList: [
         {
           code: 10,
-          currentClass: '_current',
         },
         {
           code: 20,
-          currentClass: '',
         },
         {
           code: 35,
-          currentClass: '',
         },
         {
           code: 50,
-          currentClass: '',
         },
       ],
       nominalCurrent: 10,
       toggleList: false,
       toggleListNominal: false,
+      listResult: null,
     };
   },
   mounted() {},
@@ -104,31 +101,42 @@ export default {
       this.toggleListNominal = !this.toggleListNominal;
     },
     toggleOption(event) {
-      const allItems = event.target.parentNode.querySelectorAll('.select__list-option');
-      allItems.forEach((element) => {
-        element.classList.remove('_current');
-      });
-      event.target.classList.add('_current');
       this.regionsCurrent = event.target.getAttribute('data-option');
       this.toggleList = false;
-      // this.fetchCards();
     },
     toggleOptionNominal(event) {
-      const allItems = event.target.parentNode.querySelectorAll('.select__list-option');
-      allItems.forEach((element) => {
-        element.classList.remove('_current');
-      });
-      event.target.classList.add('_current');
       this.nominalCurrent = Number(event.target.getAttribute('data-option'));
       this.toggleListNominal = false;
     },
-    importCard() {
-      const currentData = {
+    validateForm(e) {
+      const randomId = Math.random();
+      const currentCardInformation = {
+        id: randomId,
         region: this.regionsCurrent,
         nominal: this.nominalCurrent,
         code: this.code,
+        createAt: serverTimestamp(),
       };
-      console.log(currentData);
+
+      if (this.code == null) {
+        this.codeError = true;
+      } else {
+        this.validCode(this.code);
+      }
+      if (this.codeError === false) {
+        this.exportCard(currentCardInformation);
+      }
+      e.preventDefault();
+    },
+    validCode(code) {
+      if (code.length > 6) {
+        this.codeError = false;
+      } else {
+        this.codeError = true;
+      }
+    },
+    async exportCard(currentCardInformation) {
+      addCard(currentCardInformation);
     },
   },
 };

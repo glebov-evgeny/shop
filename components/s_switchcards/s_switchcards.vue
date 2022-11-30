@@ -75,11 +75,11 @@ export default {
       this.toggleList = !this.toggleList;
     },
     toggleOption(event) {
-      const allItems = document.querySelectorAll('.switchcards__region-option');
-      allItems.forEach((element) => {
-        element.classList.remove('_current');
-      });
-      event.target.classList.add('_current');
+      // const allItems = document.querySelectorAll('.switchcards__region-option');
+      // allItems.forEach((element) => {
+      //   element.classList.remove('_current');
+      // });
+      // event.target.classList.add('_current');
       this.regionsCurrent = event.target.getAttribute('data-option');
       this.toggleList = false;
       this.fetchCards();

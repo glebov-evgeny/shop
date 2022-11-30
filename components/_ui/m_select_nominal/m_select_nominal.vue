@@ -3,14 +3,8 @@
     <div class="select__toggle" @click="toggleListHandler">
       <p class="select__current" :data-current="regionsCurrent">{{ regionsCurrent }}</p>
     </div>
-    <div class="select__list _nominal" :class="[toggleList ? '_active' : '']" @click="toggleOption">
-      <p
-        v-for="regions in regionsList"
-        class="select__list-option"
-        :class="regions.currentClass"
-        :data-option="regions.code"
-        :key="regions.code"
-      >
+    <div class="select__list _nominal" @click="toggleOption">
+      <p v-for="regions in regionsList" class="select__list-option" :data-option="regions.code" :key="regions.code">
         {{ regions.code }}
       </p>
     </div>

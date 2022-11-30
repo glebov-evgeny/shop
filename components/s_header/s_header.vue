@@ -1,9 +1,9 @@
 <template>
   <header class="header" id="header">
     <div class="container header__container">
-      <div class="header__logos">
+      <nuxt-link :to="'/'" class="header__logos">
         <img src="@/assets/images/header/logo-mob.png" class="header__logo" alt="logo" />
-      </div>
+      </nuxt-link>
       <div class="header__menu" v-if="showMenuButton" @click="openMenu">
         <svg class="ham hamRotate hamR" viewBox="0 0 100 100" width="40" ref="ham">
           <path

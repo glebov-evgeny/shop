@@ -34,11 +34,12 @@ export default {
   },
   mounted() {
     this.isUserLogged();
+    this.hideYScroll();
   },
   watch: {
-    popuIsShow() {
-      this.hideYScroll();
-    },
+    // popuIsShow() {
+    //   this.hideYScroll();
+    // },
   },
   methods: {
     hideYScroll() {

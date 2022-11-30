@@ -1,6 +1,10 @@
 <template>
   <div class="card" @click="onCardClick">
     <p>{{ name }}</p>
+    <br />
+    <p>{{ name }}</p>
+    <p>{{ name }}</p>
+    <p>{{ name }}</p>
   </div>
 </template>
 

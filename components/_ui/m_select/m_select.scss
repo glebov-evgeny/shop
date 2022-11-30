@@ -36,13 +36,13 @@
       &:hover {
         background: var(--color-yellow);
       }
-      &._current {
-        background: #eee;
-        opacity: 0.6;
-        cursor: default;
-        user-select: none;
-        pointer-events: none;
-      }
+      // &._current {
+      //   background: #eee;
+      //   opacity: 0.6;
+      //   cursor: default;
+      //   user-select: none;
+      //   pointer-events: none;
+      // }
     }
   }
   &__current {
