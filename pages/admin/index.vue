@@ -37,9 +37,9 @@ export default {
     this.hideYScroll();
   },
   watch: {
-    // popuIsShow() {
-    //   this.hideYScroll();
-    // },
+    popuIsShow() {
+      this.hideYScroll();
+    },
   },
   methods: {
     hideYScroll() {
