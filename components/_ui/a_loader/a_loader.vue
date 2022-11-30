@@ -1,5 +1,10 @@
 <template>
-  <div v-if="loading" class="loader loader-spin"></div>
+  <div v-if="loading" class="loading">
+    <div class="spinner">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,8 +13,14 @@ import './a_loader.scss';
 export default {
   name: 'Aloader',
   data: () => ({
-    loading: false,
+    loading: true,
   }),
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 2000);
+    });
+  },
   methods: {
     start() {
       this.loading = true;

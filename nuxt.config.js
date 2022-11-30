@@ -92,7 +92,7 @@ export default {
       lang: 'ru',
     },
   },
-  loading: '~/components/_ui/a_loader/a_loader.vue',
+  loading: '~/components/_ui/a_loader/a_loader',
 
   build: {
     transpile: ['gsap'],

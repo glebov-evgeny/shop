@@ -50,6 +50,7 @@ export default {
     // eslint-disable-next-line no-undef
     emailjs.init('lSiwUD9_iX1bEyngQ');
   },
+
   watch: {
     popuIsShow() {
       this.hideYScroll();
