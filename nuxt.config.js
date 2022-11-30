@@ -52,13 +52,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
+    // https://go.nuxtjs.dev/pwas
     '@nuxtjs/pwa',
     // https://github.com/nuxt-community/robots-module
     '@nuxtjs/robots',
     ['cookie-universal-nuxt', { parseJSON: false }],
     // '@nuxtjs/auth-next',
     '@nuxtjs/i18n',
+    '@nuxtjs/toast',
     // https://github.com/nuxt-community/gtm-module
     // '@nuxtjs/gtm',
     // https://www.npmjs.com/package/nuxt-facebook-pixel-module

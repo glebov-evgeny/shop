@@ -37,8 +37,8 @@
           <button class="admin_import__button" @click="validateForm">Добавить</button>
         </div>
       </div>
-      <!-- <button class="admin_import-test-btn" @click="testImport">import</button>
-      <p class="admin_import-test">{{listResult}}</p> -->
+      <button class="admin_import-test-btn" @click="testImport">import</button>
+      <!--<p class="admin_import-test">{{listResult}}</p> -->
     </div>
   </section>
 </template>
@@ -98,6 +98,7 @@ export default {
       this.toggleList = !this.toggleList;
     },
     toggleListHandlerNominal() {
+      console.log('клик');
       this.toggleListNominal = !this.toggleListNominal;
     },
     toggleOption(event) {
@@ -105,6 +106,7 @@ export default {
       this.toggleList = false;
     },
     toggleOptionNominal(event) {
+      console.log('rkbr');
       this.nominalCurrent = Number(event.target.getAttribute('data-option'));
       this.toggleListNominal = false;
     },
@@ -125,6 +127,8 @@ export default {
       }
       if (this.codeError === false) {
         this.exportCard(currentCardInformation);
+        this.code = null;
+        this.$toast.show('Карта добавлена');
       }
       e.preventDefault();
     },
@@ -134,6 +138,9 @@ export default {
       } else {
         this.codeError = true;
       }
+    },
+    testImport() {
+      this.$toast.show('Карта добавлена');
     },
     async exportCard(currentCardInformation) {
       addCard(currentCardInformation);
