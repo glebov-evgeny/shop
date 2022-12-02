@@ -1,8 +1,12 @@
 {
   "ru": {
-    "title": "Промо штука <br/> Главная информация<br/> Красивая картинка"
+    "title": "Тигры <br/>Разума",
+    "description": "магазин игр",
+    "fun": "(и не только)"
   },
   "en": {
-    "title": "Lorem <br /><span>ipsum</span> dolor <br/> Lorem est si"
+    "title": "Tigers <br />Games",
+    "description": "play store",
+    "fun": "(and not only)"
   }
 }

@@ -3,8 +3,8 @@
     "menuItems": [
       {
         "name": "index1",
-        "anchor": "ссылка",
-        "target": "section01"
+        "anchor": "Nindendo",
+        "target": "switchcards"
       },
       {
         "name": "index2",
@@ -24,8 +24,8 @@
     "menuItems": [
       {
         "name": "index1",
-        "anchor": "Link1",
-        "target": "section01"
+        "anchor": "Nindendo",
+        "target": "switchcards"
       },
       {
         "name": "index2",

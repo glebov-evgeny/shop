@@ -3,6 +3,7 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
       <s-intro />
+      <!-- <s-diagonal /> -->
       <s-switchcards @popupIsOpen="popupIsOpen" @paymentsBtnClick="paymentsBtnClick" />
       <s-dump />
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
@@ -40,7 +41,7 @@ export default {
     return {
       popuIsShow: false,
       popuIsShowContent: false,
-      registrationOrLoginForm: true,
+      registrationOrLoginForm: false,
       isPaymentForm: false,
       isQuestionForm: false,
     };

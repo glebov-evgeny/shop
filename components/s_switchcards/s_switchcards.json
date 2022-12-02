@@ -1,8 +1,10 @@
 {
   "ru": {
-    "title": "..."
+    "title": "Nintendo",
+    "region_choise": "Выбрать регион:"
   },
   "en": {
-    "title": "Lorem est si turu ruru"
+    "title": "Nintendo",
+    "region_choise": "Select region:"
   }
 }

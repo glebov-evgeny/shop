@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       popuIsShow: false,
-      registrationOrLoginForm: true,
+      registrationOrLoginForm: false,
     };
   },
   mounted() {

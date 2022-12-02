@@ -7,6 +7,7 @@
     min-height: rem(45);
     padding: rem(12);
     background: var(--color-white);
+    border: rem(2) solid var(--color-black);
     border-radius: var(--border-radius-sm);
     cursor: pointer;
   }
@@ -22,8 +23,9 @@
     border-radius: var(--border-radius-sm);
     transition: 0.3s;
     &._active {
+      overflow-y: auto;
       height: rem(92);
-      box-shadow: 0 2px 5px 2px #cfcfcf;
+      box-shadow: 0 2px 5px 2px var(--color-black);
       &._nominal {
         height: rem(124);
       }
@@ -36,13 +38,6 @@
       &:hover {
         background: var(--color-yellow);
       }
-      // &._current {
-      //   background: #eee;
-      //   opacity: 0.6;
-      //   cursor: default;
-      //   user-select: none;
-      //   pointer-events: none;
-      // }
     }
   }
   &__current {

@@ -1,55 +1,78 @@
 @import '@/assets/styles/tools/mixins';
 
 .intro {
-  padding: rem(15) 0;
-  background: #eee;
-  &__container {
-    @include _768 {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    display: flex;
-    flex-direction: column-reverse;
+  @include _576 {
+    padding: rem(175) 0 0;
   }
-  &__pic {
-    @include _768 {
-      margin: 0;
-    }
-    @include _1200 {
-      min-height: rem(400);
+
+  position: relative;
+  overflow: hidden;
+  padding: rem(75) 0 0;
+  color: #fff;
+  background: var(--color-black);
+  &__content {
+    @include _576 {
+      padding-bottom: rem(175);
     }
 
-    width: 100%;
-    min-height: rem(300);
-    margin-bottom: rem(30);
-    background: #ccc;
-    border-radius: rem(10);
+    padding-bottom: rem(75);
+    text-align: center;
   }
   &__title {
-    @include _768 {
-      font-size: rem(24);
-      text-align: left;
+    @include _576 {
+      font-size: rem(58);
     }
     @include _1200 {
-      font-size: rem(32);
+      font-size: rem(64);
     }
 
-    font-size: rem(18);
-    line-height: 135%;
-    text-align: right;
-    text-transform: uppercase;
+    font-family: 'Rubik Mono One', serif;
+    font-size: rem(46);
+    font-weight: 100;
   }
-  &__content,
-  &__image {
-    @include _768 {
-      width: 48%;
+  &__description {
+    font-size: rem(26);
+  }
+  &__fun {
+    margin-top: rem(6);
+    font-size: rem(14);
+  }
+  &__line {
+    @include _1200 {
+      width: 10%;
     }
+
+    width: 20%;
+    height: rem(2);
+    margin: rem(15) auto;
+    background: var(--color-white);
+    border-radius: 2px;
   }
-  &__content {
-    @include _768 {
-      display: flex;
-      align-items: center;
+  &__circle {
+    @include _1200 {
+      width: 100%;
+      animation: intro-rotate 80s infinite linear;
+    }
+
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    max-width: 225%;
+    opacity: 0.08;
+    transform: translate(-50%, -50%);
+    animation: intro-rotate 40s infinite linear;
+  }
+  &__diagonal {
+    min-height: rem(100);
+    background: var(--color-lightyellow);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+  }
+  @keyframes intro-rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
 }

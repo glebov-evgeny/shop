@@ -1,0 +1,12 @@
+@import '@/assets/styles/tools/mixins';
+
+.diagonal {
+  min-height: rem(100);
+  background-color: var(--color-grey-hover);
+  // &__box{
+  //   background: var(--color-black);
+  //   -webkit-clip-path: polygon(0 0%, 100% 0, 100% 0%, 0 100%);
+  //   clip-path: polygon(0 0%, 100% 0, 100% 0%, 0 100%);
+  //   min-height: rem(100);
+  // }
+}

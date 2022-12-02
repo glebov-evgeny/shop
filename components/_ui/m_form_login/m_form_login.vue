@@ -3,7 +3,7 @@
     <div class="form__wrapper" v-if="formWasSend">
       <div class="form__info">
         <h3 class="form__title">{{ $t('title') }}</h3>
-        <p class="form__description">{{ $t('description') }}</p>
+        <p class="form__description" v-html="$t('description')"></p>
       </div>
       <div class="form__content">
         <label class="form__label">

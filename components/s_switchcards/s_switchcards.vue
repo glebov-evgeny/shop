@@ -1,16 +1,19 @@
 <template>
-  <section class="switchcards">
+  <section class="switchcards" id="switchcards">
     <div class="container switchcards__container">
-      <h2 class="switchcards__title title" v-html="$t('title')"></h2>
-      <div class="switchcards__region-box">
-        <p class="switchcards__region-title">Выбор региона:</p>
-        <MCardSelect
-          :toggleList="toggleList"
-          :regionsList="regionsList"
-          :regionsCurrent="regionsCurrent"
-          @toggleListHandler="toggleListHandler"
-          @toggleOption="toggleOption"
-        />
+      <h2 class="switchcards__title title__section" v-html="$t('title')"></h2>
+      <div class="switchcards__top">
+        <p class="switchcards__description" v-html="$t('region_choise')"></p>
+        <div class="switchcards__top-wrapper">
+          <MCardSelect
+            :toggleList="toggleList"
+            :regionsList="regionsList"
+            :regionsCurrent="regionsCurrent"
+            :regionsCurrentText="regionsCurrentText"
+            @toggleListHandler="toggleListHandler"
+            @toggleOption="toggleOption"
+          />
+        </div>
       </div>
       <div class="switchcards__region-block">
         <m-card v-for="card in cards" :key="card.name" :name="card.name" @cardClickHandler="cardClickHandler" />
@@ -44,18 +47,15 @@ export default {
       regionsList: [
         {
           code: 'usa',
-          currentClass: '_current',
+          text: 'US (United States)',
         },
         {
           code: 'pol',
-          currentClass: '',
-        },
-        {
-          code: 'bra',
-          currentClass: '',
+          text: 'PL (Poland)',
         },
       ],
       regionsCurrent: 'usa',
+      regionsCurrentText: 'US (United States)',
       toggleList: false,
     };
   },
@@ -74,15 +74,12 @@ export default {
     toggleListHandler() {
       this.toggleList = !this.toggleList;
     },
-    toggleOption(event) {
-      // const allItems = document.querySelectorAll('.switchcards__region-option');
-      // allItems.forEach((element) => {
-      //   element.classList.remove('_current');
-      // });
-      // event.target.classList.add('_current');
-      this.regionsCurrent = event.target.getAttribute('data-option');
+    toggleOption(codeRegion) {
+      const currentObject = this.regionsList.find(({ code }) => code === codeRegion);
+      this.regionsCurrent = currentObject.code;
+      this.regionsCurrentText = currentObject.text;
       this.toggleList = false;
-      this.fetchCards();
+      // this.fetchCards();
     },
     cardClickHandler(item) {
       console.log(item);
