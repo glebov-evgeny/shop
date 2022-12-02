@@ -33,6 +33,7 @@
     &-option {
       padding: rem(8) rem(12);
       font-size: rem(14);
+      font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
       &:hover {
@@ -42,5 +43,6 @@
   }
   &__current {
     font-size: rem(14);
+    font-weight: 600;
   }
 }

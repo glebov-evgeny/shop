@@ -3,9 +3,9 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
       <s-intro />
-      <!-- <s-diagonal /> -->
       <s-switchcards @popupIsOpen="popupIsOpen" @paymentsBtnClick="paymentsBtnClick" />
-      <s-dump />
+      <s-faq :questions="questions" />
+      <!-- <s-dump /> -->
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
         <m-form-login v-if="!registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
@@ -44,6 +44,42 @@ export default {
       registrationOrLoginForm: false,
       isPaymentForm: false,
       isQuestionForm: false,
+      questions: [
+        {
+          title: 'Что такое подарочная карта Nintendo eShop?',
+          // eslint-disable-next-line max-len
+          text: 'Карта Nintendo eShop позволяет быстро пополненить счет вашей учетной записи. Продукт представляет собой 16-значный код, который служит для погашения карты. Это идеальный подарок для тех, кто любит играть.',
+          isActive: false,
+        },
+        {
+          title: 'Для какого региона предназначены карты, что продаются на сайте?',
+          // eslint-disable-next-line max-len
+          text: 'Карты предназначены для регионов Польши и США. Информация о регионе указана на карте.',
+          isActive: false,
+        },
+        {
+          title: 'Как активировать карту?',
+          // eslint-disable-next-line max-len
+          text: `<span>На консоли Nintendo Switch:</span><br/>
+                1. Запустите Nintendo eShop из меню HOME на консоли.<br/>
+                2. Нажмите на Меню в верхнем левом углу нижнего экрана.<br/>
+                3. Выберите пункт Добавить средства или Активировать код.<br/>
+                4. Введите 16-значный код загрузки на появившемся экране и коснитесь Подтвердить.<br/><br/>
+                <span>В веб-браузере через учетную запись Nintendo:</span><br/>
+                1. В браузере перейдите на страницу Использовать код и выполните вход в учетную запись Nintendo.<br/>
+                2. Введите 16-значный код для пополнения счета и нажмите ОК.<br/>
+                3. Нажмите Подтвердить, чтобы завершить.`,
+          isActive: true,
+        },
+        {
+          title: 'Как изменить настройку страны в учетной записи Nintendo?',
+          // eslint-disable-next-line max-len
+          text: `Пользователи сервиса имеют возможность изменить настройку страны в учетной записи Nintendo. Но не забывайте, что это может оказать влияние на доступные вам сервисы. Например, списки заданий и наград могут различаться в зависимости от страны. Или можно потерять золотые очки My Nintendo, так как они используются только в стране с той же валютой, что и в стране, где вы их заработали.<br/><br/>
+                Для изменения настройки страны или региона в вашей учетной записи Nintendo обязательно отключите автоматическое продление членского статуса Nintendo Switch Online.<br/><br/>
+                Изменить другую информацию о пользователе можно в разделе Настройки вашей учетной записи Nintendo. Сервис My Nintendo использует информацию о пользователе из вашей учетной записи Nintendo.`,
+          isActive: false,
+        },
+      ],
     };
   },
   mounted() {

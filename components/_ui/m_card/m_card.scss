@@ -3,14 +3,55 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding: rem(24) rem(12);
-  background: var(--color-lightyellow);
+  padding: rem(24) rem(24);
+  color: var(--color-white);
+  background: var(--color-black);
   border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  &__logo {
+    width: rem(96);
+    margin-left: auto;
+    fill: var(--color-white);
+  }
+  &__title {
+    max-width: rem(260);
+    margin: rem(30) auto 0;
+    font-size: rem(20);
+    text-align: center;
+  }
+  &__region {
+    font-size: rem(14);
+    text-align: center;
+  }
+  &__nominal {
+    font-size: rem(18);
+  }
+  &__cost {
+    font-size: rem(18);
+    span {
+      font-weight: 900;
+    }
+  }
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: rem(30);
+  }
+  &__line {
+    display: block;
+    width: rem(80);
+    height: rem(2);
+    margin: rem(10) auto;
+    background: var(--color-white);
+    border-radius: rem(10);
+    opacity: 0.4;
+  }
 }
 
 /* Jast for testing */
 
 .card_test {
+  display: none;
   min-height: rem(20);
   margin-top: rem(32);
   padding: rem(12);

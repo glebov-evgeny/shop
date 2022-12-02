@@ -15,14 +15,22 @@
           />
         </div>
       </div>
-      <div class="switchcards__region-block">
-        <m-card v-for="card in cards" :key="card.name" :name="card.name" @cardClickHandler="cardClickHandler" />
+      <div class="switchcards__bottom">
+        <m-card
+          v-for="card in cards"
+          :key="card.nominal"
+          :card="card"
+          :regionsCurrentText="regionsCurrentText"
+          :curretValue="curretValue"
+          @cardClickHandler="cardClickHandler"
+        />
       </div>
-      <div class="card_test">
+      <!-- <div class="card_test">
         <button class="card_test-button" v-if="this.$store.state.token" @click="paymentsLogic">Если залогиненен</button>
         <button class="card_test-button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
-      </div>
+      </div> -->
     </div>
+    <div class="switchcards__diagonal"></div>
   </section>
 </template>
 
@@ -62,12 +70,13 @@ export default {
   methods: {
     async fetchCards() {
       const db = getFirestore();
-      const getData = query(collection(db, `cards/${this.regionsCurrent}/list`));
+      const getData = query(collection(db, `${this.regionsCurrent}`));
       onSnapshot(getData, (querySnapshot) => {
         const arr = [];
         querySnapshot.forEach((doc) => {
           arr.push(doc.data());
         });
+        arr.sort((a, b) => a.nominal - b.nominal);
         this.cards = arr;
       });
     },
@@ -79,7 +88,7 @@ export default {
       this.regionsCurrent = currentObject.code;
       this.regionsCurrentText = currentObject.text;
       this.toggleList = false;
-      // this.fetchCards();
+      this.fetchCards();
     },
     cardClickHandler(item) {
       console.log(item);
@@ -89,6 +98,14 @@ export default {
     },
     popupIsOpen() {
       this.$emit('popupIsOpen');
+    },
+  },
+  computed: {
+    curretValue() {
+      if (this.regionsCurrent === 'pol') {
+        return 'zł';
+      }
+      return '$';
     },
   },
   mounted() {

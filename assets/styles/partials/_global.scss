@@ -59,16 +59,6 @@ a {
   &__section {
     width: 100vw;
     // height: 100vh;
-    &._01 {
-      background: var(--color-black);
-    }
-    &._02 {
-      background: var(--color-white);
-    }
-    &._03 {
-      width: 200vw;
-      background: var(--color-grey);
-    }
   }
 }
 
@@ -81,9 +71,6 @@ a {
   width: min-content;
 }
 
-.w-full {
-  width: 100%;
-}
 
 .container {
   max-width: rem(1440);

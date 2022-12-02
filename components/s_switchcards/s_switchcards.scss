@@ -1,10 +1,16 @@
 @import '@/assets/styles/tools/mixins';
 
 .switchcards {
+  padding: 0 0;
   background: var(--color-lightyellow);
   &__title {
     text-align: right;
+
     &::before {
+      @include _992 {
+        width: rem(200);
+      }
+
       content: '';
       position: absolute;
       right: 0;
@@ -15,6 +21,12 @@
       border-radius: rem(10);
     }
     &::after {
+      @include _992 {
+        top: rem(-60);
+        width: rem(28);
+        height: rem(28);
+      }
+
       content: '';
       position: absolute;
       top: rem(-35);
@@ -26,6 +38,10 @@
     }
   }
   &__description {
+    @include _992 {
+      font-size: rem(18);
+    }
+
     margin-bottom: rem(16);
     font-size: rem(16);
     font-weight: 600;
@@ -33,25 +49,45 @@
   &__top {
     display: flex;
     flex-direction: column;
-    margin-top: rem(64);
-    margin-bottom: rem(35);
+    margin: rem(64) 0 0;
     &-wrapper {
       @include _576 {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
-      @include _768 {
+      @include _992 {
         grid-template-columns: repeat(3, 1fr);
       }
-      @include _992 {
-        grid-template-columns: repeat(4, 1fr);
-      }
       @include _1200 {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
 
       display: grid;
       grid-template-columns: 1fr;
+      gap: rem(10);
     }
+  }
+  &__bottom {
+    @include _576 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @include _992 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include _1200 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    display: grid;
+    margin-top: rem(42);
+    padding-bottom: rem(50);
+    grid-template-columns: 1fr;
+    gap: rem(10);
+  }
+  &__diagonal {
+    min-height: rem(100);
+    background: var(--color-black);
+    clip-path: polygon(0% 0%, 0% 0, 100% 100%, 0 100%);
   }
 }

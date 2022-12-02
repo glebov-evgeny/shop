@@ -12,6 +12,9 @@
   font-family: 'Rubik Mono One', serif;
   font-size: rem(24);
   font-weight: 100;
+  @media all and (min-width: 992px) {
+    font-size: rem(40);
+  }
 }
 .description {
   font-size: rem(18);
