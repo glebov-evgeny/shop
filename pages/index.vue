@@ -4,6 +4,7 @@
     <main class="main">
       <s-intro />
       <s-switchcards @popupIsOpen="popupIsOpen" @cardClickHandler="cardClickHandler" />
+      <!-- ненужное-->
       <div v-if="getCodes">
         <div class="card_test-code" v-for="item in getCodes" :key="item.code">
           <p>{{ item.code }}</p>
@@ -11,6 +12,7 @@
           <p>{{ item.createAt.toDate() }}</p>
         </div>
       </div>
+      <!-- ненужное-->
       <s-faq :questions="questions" />
       <!-- <s-dump /> -->
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
@@ -113,7 +115,6 @@ export default {
         htmlWrapper.style.overflow = 'auto';
       }
     },
-
     isUserLogged() {
       // Проверяю cookies, если user есть - беру значение в store
       if (this.$cookies.get('user')) {
