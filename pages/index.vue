@@ -5,13 +5,13 @@
       <s-intro />
       <s-switchcards @popupIsOpen="popupIsOpen" @cardClickHandler="cardClickHandler" />
       <!-- ненужное-->
-      <div v-if="getCodes">
+      <!-- <div v-if="getCodes">
         <div class="card_test-code" v-for="item in getCodes" :key="item.code">
           <p>{{ item.code }}</p>
           <br /><br />
           <p>{{ item.createAt.toDate() }}</p>
         </div>
-      </div>
+      </div> -->
       <!-- ненужное-->
       <s-faq :questions="questions" />
       <!-- <s-dump /> -->
@@ -22,7 +22,7 @@
       <s-popup :show="popuIsShowContent" @popupIsClosed="popupIsClosed">
         <m-form-question v-if="isQuestionForm" />
         <m-form-payments v-if="isPaymentForm" />
-        <!-- <m-success-code v-if="isSuccessCode" /> -->
+        <m-form-code v-if="isSuccessCode" :getCodes="getCodes" />
       </s-popup>
     </main>
     <s-footer />
@@ -39,7 +39,14 @@ import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue'
 // eslint-disable-next-line import/extensions
 import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
 // eslint-disable-next-line import/extensions
-import getSuccessCode from '@/api/getSuccessCode';
+import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
+
+// eslint-disable-next-line import/extensions
+// import getSuccessCode from '@/api/getSuccessCode';
+
+import {
+  getFirestore, collection, onSnapshot, query,
+} from 'firebase/firestore';
 
 export default {
   components: {
@@ -47,6 +54,7 @@ export default {
     MFormLogin,
     MFormQuestion,
     MFormPayments,
+    MFormCode,
   },
   data() {
     return {
@@ -92,7 +100,7 @@ export default {
           isActive: false,
         },
       ],
-      getCodes: [],
+      getCodes: {},
     };
   },
   mounted() {
@@ -128,7 +136,21 @@ export default {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
     async cardClickHandler(item) {
-      this.getCodes = await getSuccessCode(item).then((response) => response.sort((a, b) => a.id - b.id));
+      const db = getFirestore();
+      const getData = await query(collection(db, `${item.region}_cards_${item.nominal}`));
+      onSnapshot(getData, (querySnapshot) => {
+        const response = [];
+        querySnapshot.forEach((doc) => {
+          response.push(doc.data());
+        });
+        const firstElement = response[0];
+        this.getCodes = firstElement;
+      });
+      this.showCurrentCode();
+    },
+    showCurrentCode() {
+      this.popuIsShowContent = true;
+      this.isSuccessCode = true;
     },
     popupIsClosed() {
       this.popuIsShow = false;

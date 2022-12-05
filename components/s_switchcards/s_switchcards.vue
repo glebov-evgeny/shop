@@ -25,7 +25,7 @@
           @cardClickHandler="cardClickHandler"
         />
       </div>
-      <div class="card_test">
+      <!-- <div class="card_test">
         <button
           class="card_test-button"
           v-if="this.$store.state.token"
@@ -34,7 +34,7 @@
           Если залогиненен
         </button>
         <button class="card_test-button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
-      </div>
+      </div> -->
     </div>
     <div class="switchcards__diagonal"></div>
   </section>
@@ -117,7 +117,7 @@ export default {
   },
   mounted() {
     /* Раскомментировать здесь */
-    // this.fetchCards();
+    this.fetchCards();
   },
 };
 </script>
