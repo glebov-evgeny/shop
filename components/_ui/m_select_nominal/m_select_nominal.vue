@@ -1,11 +1,16 @@
 <template>
   <div class="select">
     <div class="select__toggle" @click="toggleListHandler">
-      <p class="select__current" :data-current="regionsCurrent">{{ regionsCurrent }}</p>
+      <p class="select__current" :data-current="nominalCurrent">{{ nominalCurrent }}</p>
     </div>
-    <div class="select__list _nominal" :class="toggleList ? '_active' : ''" @click="toggleOption">
-      <p v-for="regions in regionsList" class="select__list-option" :data-option="regions.code" :key="regions.code">
-        {{ regions.code }}
+    <div class="select__list _nominal" :class="toggleListNominal ? '_active' : ''">
+      <p
+        v-for="nominal in nominalList"
+        class="select__list-option"
+        :key="nominal.code"
+        @click="toggleOptionNominal(nominal.code)"
+      >
+        {{ nominal.code }}
       </p>
     </div>
   </div>
@@ -15,13 +20,13 @@
 export default {
   name: 'MCardSelectNominal',
   props: {
-    regionsList: {
+    nominalList: {
       type: Array,
     },
-    regionsCurrent: {
+    nominalCurrent: {
       type: Number,
     },
-    toggleList: {
+    toggleListNominal: {
       type: Boolean,
       default: false,
     },
@@ -33,8 +38,8 @@ export default {
     toggleListHandler(event) {
       this.$emit('toggleListHandlerNominal', event);
     },
-    toggleOption(event) {
-      this.$emit('toggleOptionNominal', event);
+    toggleOptionNominal(nominal) {
+      this.$emit('toggleOptionNominal', nominal);
     },
   },
 };

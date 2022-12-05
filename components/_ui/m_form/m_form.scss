@@ -3,8 +3,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding: rem(45) rem(15);
-  background: #464646;
+  padding: 0;
+  background: none;
   border-radius: var(--border-radius);
   &__title {
     font-size: rem(24);
@@ -35,7 +35,7 @@
     min-height: rem(45);
     padding: rem(5) rem(15);
     background: var(--color-white);
-    border: rem(2) solid var(--color-white);
+    border: rem(2) solid var(--color-grey);
     border-radius: var(--border-radius-sm);
     outline: none;
     font-size: rem(16);
@@ -96,17 +96,6 @@
     font-size: rem(12);
     font-weight: 900;
     line-height: 135%;
-  }
-  &._compact {
-    padding: 0;
-    background: none;
-    .form__input {
-      border: rem(2) solid var(--color-grey);
-      &.error {
-        border: rem(2) solid var(--color-purple);
-        box-shadow: inset 0 0 rem(5) var(--color-purple);
-      }
-    }
   }
   &__social {
     display: flex;

@@ -21,10 +21,10 @@
     height: 0;
     background: var(--color-white);
     border-radius: var(--border-radius-sm);
-    transition: 0.3s;
+    transition: 0.2s;
     &._active {
       overflow-y: auto;
-      height: rem(92);
+      height: rem(62);
       box-shadow: 0 2px 5px 2px var(--color-black);
       &._nominal {
         height: rem(124);

@@ -3,16 +3,24 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
     <main class="main">
       <s-intro />
-      <s-switchcards @popupIsOpen="popupIsOpen" @paymentsBtnClick="paymentsBtnClick" />
+      <s-switchcards @popupIsOpen="popupIsOpen" @cardClickHandler="cardClickHandler" />
+      <div v-if="getCodes">
+        <div class="card_test-code" v-for="item in getCodes" :key="item.code">
+          <p>{{ item.code }}</p>
+          <br /><br />
+          <p>{{ item.createAt.toDate() }}</p>
+        </div>
+      </div>
       <s-faq :questions="questions" />
       <!-- <s-dump /> -->
       <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
-        <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
-        <m-form-login v-if="!registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
+        <m-form-registration v-if="registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
+        <m-form-login v-if="!registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
       </s-popup>
       <s-popup :show="popuIsShowContent" @popupIsClosed="popupIsClosed">
-        <m-form-question v-if="isQuestionForm" className="_compact" />
-        <m-form-payments v-if="isPaymentForm" className="_compact" />
+        <m-form-question v-if="isQuestionForm" />
+        <m-form-payments v-if="isPaymentForm" />
+        <!-- <m-success-code v-if="isSuccessCode" /> -->
       </s-popup>
     </main>
     <s-footer />
@@ -28,7 +36,8 @@ import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
 import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue';
 // eslint-disable-next-line import/extensions
 import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
-import getPayment from '@/api/getPayment';
+// eslint-disable-next-line import/extensions
+import getSuccessCode from '@/api/getSuccessCode';
 
 export default {
   components: {
@@ -44,6 +53,7 @@ export default {
       registrationOrLoginForm: false,
       isPaymentForm: false,
       isQuestionForm: false,
+      isSuccessCode: false,
       questions: [
         {
           title: 'Что такое подарочная карта Nintendo eShop?',
@@ -80,6 +90,7 @@ export default {
           isActive: false,
         },
       ],
+      getCodes: [],
     };
   },
   mounted() {
@@ -115,15 +126,14 @@ export default {
     changeFormPopup() {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
-    paymentsBtnClick() {
-      // this.popuIsShowContent = true;
-      // this.isPaymentForm = true;
-      getPayment();
+    async cardClickHandler(item) {
+      this.getCodes = await getSuccessCode(item).then((response) => response.sort((a, b) => a.id - b.id));
     },
     popupIsClosed() {
       this.popuIsShow = false;
       this.popuIsShowContent = false;
     },
   },
+  computed: {},
 };
 </script>

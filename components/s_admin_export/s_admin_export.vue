@@ -1,31 +1,32 @@
 <template>
-  <section class="admin_import">
-    <div class="container admin_import__container">
-      <h1 class="admin_import__title">Импорт:</h1>
-      <div class="admin_import__block">
-        <div class="admin_import__box">
-          <div class="admin_import__field">
-            <p class="admin_import__field-information">Регион:</p>
+  <section class="admin_export">
+    <div class="container admin_export__container">
+      <h1 class="admin_export__title">Импорт:</h1>
+      <div class="admin_export__block">
+        <div class="admin_export__box">
+          <div class="admin_export__field">
+            <p class="admin_export__field-information">Регион:</p>
             <MCardSelect
               :toggleList="toggleList"
               :regionsList="regionsList"
               :regionsCurrent="regionsCurrent"
+              :regionsCurrentText="regionsCurrentText"
               @toggleListHandler="toggleListHandler"
               @toggleOption="toggleOption"
             />
           </div>
-          <div class="admin_import__field">
-            <p class="admin_import__field-information">Номинал:</p>
+          <div class="admin_export__field">
+            <p class="admin_export__field-information">Номинал:</p>
             <MCardSelectNominal
-              :toggleList="toggleListNominal"
-              :regionsList="nominalList"
-              :regionsCurrent="nominalCurrent"
+              :toggleListNominal="toggleListNominal"
+              :nominalList="nominalList"
+              :nominalCurrent="nominalCurrent"
               @toggleListHandlerNominal="toggleListHandlerNominal"
               @toggleOptionNominal="toggleOptionNominal"
             />
           </div>
-          <div class="admin_import__field">
-            <p class="admin_import__field-information">Код:</p>
+          <div class="admin_export__field">
+            <p class="admin_export__field-information">Код:</p>
             <input
               v-model.trim="code"
               type="text"
@@ -34,24 +35,24 @@
               placeholder="..."
             />
           </div>
-          <button class="admin_import__button" @click="validateForm">Добавить</button>
+          <button class="admin_export__button" @click="validateForm">Добавить</button>
         </div>
       </div>
-      <button class="admin_import-test-btn" @click="testImport">import</button>
+      <button class="admin_export-test-btn" @click="testImport">import</button>
       <!--<p class="admin_import-test">{{listResult}}</p> -->
     </div>
   </section>
 </template>
 
 <script>
-import './s_admin_import.scss';
+import './s_admin_export.scss';
 import MCardSelect from '@/components/_ui/m_select/m_select';
 import MCardSelectNominal from '~/components/_ui/m_select_nominal/m_select_nominal';
 import { serverTimestamp } from 'firebase/firestore';
 import addCard from '~/api/addCard';
 
 export default {
-  name: 's-admin-import',
+  name: 's-admin-export',
   components: {
     MCardSelect,
     MCardSelectNominal,
@@ -63,15 +64,15 @@ export default {
       regionsList: [
         {
           code: 'usa',
+          text: 'US (United States)',
         },
         {
           code: 'pol',
-        },
-        {
-          code: 'bra',
+          text: 'PL (Poland)',
         },
       ],
       regionsCurrent: 'usa',
+      regionsCurrentText: 'US (United States)',
       nominalList: [
         {
           code: 10,
@@ -98,16 +99,16 @@ export default {
       this.toggleList = !this.toggleList;
     },
     toggleListHandlerNominal() {
-      console.log('клик');
       this.toggleListNominal = !this.toggleListNominal;
     },
-    toggleOption(event) {
-      this.regionsCurrent = event.target.getAttribute('data-option');
+    toggleOption(codeRegion) {
+      const currentObject = this.regionsList.find(({ code }) => code === codeRegion);
+      this.regionsCurrent = currentObject.code;
+      this.regionsCurrentText = currentObject.text;
       this.toggleList = false;
     },
-    toggleOptionNominal(event) {
-      console.log('rkbr');
-      this.nominalCurrent = Number(event.target.getAttribute('data-option'));
+    toggleOptionNominal(codeRegion) {
+      this.nominalCurrent = Number(codeRegion);
       this.toggleListNominal = false;
     },
     validateForm(e) {
@@ -118,6 +119,7 @@ export default {
         nominal: this.nominalCurrent,
         code: this.code,
         createAt: serverTimestamp(),
+        isActivated: false,
       };
 
       if (this.code == null) {
@@ -140,7 +142,7 @@ export default {
       }
     },
     testImport() {
-      this.$toast.show('Карта добавлена');
+      // this.$toast.show('Карта добавлена');
     },
     async exportCard(currentCardInformation) {
       addCard(currentCardInformation);

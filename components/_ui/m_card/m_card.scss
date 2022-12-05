@@ -51,19 +51,36 @@
 /* Jast for testing */
 
 .card_test {
-  display: none;
+  display: flex;
   min-height: rem(20);
   margin-top: rem(32);
   padding: rem(12);
-  background: #c5c2c2;
-  border: rem(1) solid #b9b7b7;
+  // background: #c5c2c2;
+  // border: rem(1) solid #b9b7b7;
   border-radius: rem(12);
   cursor: pointer;
   &-button {
     width: 100%;
-    min-height: rem(45);
+    max-width: rem(150);
+    min-height: rem(35);
+    margin: 0 auto;
     border: none;
     border-radius: 10px;
+    font-size: rem(10);
+    font-weight: 900;
     cursor: pointer;
+  }
+  &-code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: rem(300);
+    height: rem(80);
+    margin: rem(10) auto;
+    background: rgb(138, 138, 138);
+    border-radius: rem(10);
+    font-size: rem(10);
+    text-align: center;
   }
 }
