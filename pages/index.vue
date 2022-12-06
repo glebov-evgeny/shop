@@ -1,28 +1,20 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-intro />
       <s-switchcards @popupIsOpen="popupIsOpen" @cardClickHandler="cardClickHandler" />
-      <!-- ненужное-->
-      <!-- <div v-if="getCodes">
-        <div class="card_test-code" v-for="item in getCodes" :key="item.code">
-          <p>{{ item.code }}</p>
-          <br /><br />
-          <p>{{ item.createAt.toDate() }}</p>
-        </div>
-      </div> -->
-      <!-- ненужное-->
       <s-faq :questions="questions" />
       <!-- <s-dump /> -->
-      <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
+      <s-popup :show="popupIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
         <m-form-login v-if="!registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
       </s-popup>
-      <s-popup :show="popuIsShowContent" @popupIsClosed="popupIsClosed">
+      <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
         <m-form-question v-if="isQuestionForm" />
         <m-form-payments v-if="isPaymentForm" />
         <m-form-code v-if="isSuccessCode" :getCodes="getCodes" />
+        <m-form-pay v-if="isPaymentPopup" @successPayments="successPayments" />
       </s-popup>
     </main>
     <s-footer />
@@ -40,6 +32,8 @@ import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue'
 import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
 // eslint-disable-next-line import/extensions
 import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
+// eslint-disable-next-line import/extensions
+import MFormPay from '@/components/_ui/m_form_pay/m_form_pay.vue';
 
 // eslint-disable-next-line import/extensions
 // import getSuccessCode from '@/api/getSuccessCode';
@@ -55,15 +49,17 @@ export default {
     MFormQuestion,
     MFormPayments,
     MFormCode,
+    MFormPay,
   },
   data() {
     return {
-      popuIsShow: false,
-      popuIsShowContent: false,
+      popupIsShow: false,
+      popupIsShowContent: false,
       registrationOrLoginForm: false,
       isPaymentForm: false,
       isQuestionForm: false,
       isSuccessCode: false,
+      isPaymentPopup: false,
       questions: [
         {
           title: 'Что такое подарочная карта Nintendo eShop?',
@@ -110,14 +106,14 @@ export default {
   },
 
   watch: {
-    popuIsShow() {
+    popupIsShow() {
       this.hideYScroll();
     },
   },
   methods: {
     hideYScroll() {
       const htmlWrapper = document.querySelector('html');
-      if (this.popuIsShow) {
+      if (this.popupIsShow) {
         htmlWrapper.style.overflow = 'hidden';
       } else {
         htmlWrapper.style.overflow = 'auto';
@@ -130,7 +126,7 @@ export default {
       }
     },
     popupIsOpen() {
-      this.popuIsShow = true;
+      this.popupIsShow = true;
     },
     changeFormPopup() {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
@@ -148,19 +144,30 @@ export default {
         if (response.length) {
           // eslint-disable-next-line prefer-destructuring
           this.getCodes = response[0];
-          this.showCurrentCode();
+          // this.showCurrentCode();
+          this.paymentPopup();
         } else {
           console.log('no');
         }
       });
     },
+    paymentPopup() {
+      this.popupIsShowContent = true;
+      this.isPaymentPopup = true;
+    },
+    successPayments() {
+      this.isPaymentPopup = false;
+      this.showCurrentCode();
+    },
     showCurrentCode() {
-      this.popuIsShowContent = true;
+      this.popupIsShowContent = true;
       this.isSuccessCode = true;
     },
     popupIsClosed() {
-      this.popuIsShow = false;
-      this.popuIsShowContent = false;
+      this.popupIsShow = false;
+      this.popupIsShowContent = false;
+      this.isPaymentPopup = false;
+      this.isSuccessCode = false;
     },
   },
   computed: {},

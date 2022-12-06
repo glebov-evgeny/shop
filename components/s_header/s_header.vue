@@ -29,9 +29,14 @@
           "
           v-html="link.anchor"
         ></a>
-        <div class="header__nav-auth">
-          <button class="header__button" v-if="this.$store.state.token" @click.stop="logout">{{ $t('logout') }}</button>
-          <button class="header__button" v-else @click.stop="popupIsOpen">{{ $t('login') }}</button>
+        <div class="header__nav-btns">
+          <nuxt-link :to="'/account'" v-if="this.$store.state.token" class="header__lk">{{ $t('lk') }}</nuxt-link>
+          <div class="header__nav-auth">
+            <button class="header__button" v-if="this.$store.state.token" @click.stop="logout">
+              {{ $t('logout') }}
+            </button>
+            <button class="header__button" v-else @click.stop="popupIsOpen">{{ $t('login') }}</button>
+          </div>
         </div>
       </nav>
       <div class="header__information" v-if="!showMenuButton">
@@ -41,6 +46,17 @@
         </div>
         <button class="header__button" v-if="this.$store.state.token" @click.stop="logout">{{ $t('logout') }}</button>
         <button class="header__button" v-else @click.stop="popupIsOpen">{{ $t('login') }}</button>
+        <div class="header__aside" v-if="this.$store.state.token">
+          <nuxt-link :to="this.$route.fullPath === '/account' ? '/' : '/account'" class="header__aside-btn">
+            <img
+              v-if="this.$route.fullPath === '/account'"
+              src="@/assets/images/header/home.png"
+              class="header__aside-pic"
+              alt="icon"
+            />
+            <span v-else>{{ $t('lk_short') }}</span>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </header>
@@ -127,7 +143,6 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout');
-      // localStorage.removeItem('user');
       this.$cookies.remove('user');
       this.$router.push('/');
     },

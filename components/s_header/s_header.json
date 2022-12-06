@@ -18,7 +18,9 @@
       }
     ],
     "login": "Войти",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "lk": "Личный кабинет",
+    "lk_short": "ЛК"
   },
   "en": {
     "menuItems": [
@@ -39,6 +41,8 @@
       }
     ],
     "login": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "lk": "user information",
+    "lk_short": "UI"
   }
 }

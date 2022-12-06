@@ -1,11 +1,11 @@
 <template>
   <div class="m-code">
-    <div class="card_test-code">
-      <p>...</p>
-      <p>{{ getCodes.code }}</p>
-      <!-- <p>{{ item.code }}</p> -->
-      <br /><br />
-      <!-- <p>{{ item.createAt.toDate() }}</p> -->
+    <div class="m-code__block">
+      <p class="m-code__title">Ваш код:</p>
+      <div class="m-code__box">{{ getCodes.code }}</div>
+      <p class="m-code__info">
+        *Данный код также отправлен на указанную при регистрации почту, и доступен в личном кабинете.
+      </p>
     </div>
   </div>
 </template>
@@ -16,10 +16,6 @@ import './m_form_code.scss';
 export default {
   name: 'm-form-code',
   props: {
-    // getCodes: {
-    //   type: Array,
-    //   default: () => [],
-    // },
     getCodes: {
       type: Object,
       default: () => {},
@@ -28,19 +24,8 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    // showItem() {
-    // this.$set(this.getCodes, indexOfItem, newValue);
-    // },
-  },
-  computed: {
-    // showItemItem() {
-    //   const currentItem = { clear: '1' };
-    //   return currentItem;
-    // },
-  },
-  mounted() {
-    // showItemItem();
-  },
+  methods: {},
+  computed: {},
+  mounted() {},
 };
 </script>

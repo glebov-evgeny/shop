@@ -1,5 +1,26 @@
 @import '@/assets/styles/tools/mixins';
 
 .m-code {
-  background: #eee;
+  &__title {
+    font-size: rem(24);
+    line-height: 135%;
+  }
+  &__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: rem(60);
+    margin: rem(40) auto rem(60);
+    border: rem(2) dashed var(--color-black);
+    border-radius: var(--border-radius-sm);
+    font-size: rem(18);
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  &__info {
+    font-size: rem(14);
+    line-height: 135%;
+  }
 }

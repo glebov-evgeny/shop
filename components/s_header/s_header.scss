@@ -94,7 +94,7 @@
   }
   &__button {
     @include _1200 {
-      max-width: rem(150);
+      max-width: rem(120);
       min-height: rem(40);
       margin-left: rem(25);
     }
@@ -107,7 +107,7 @@
     min-height: rem(35);
     margin-left: rem(15);
     background: transparent;
-    border: rem(1) solid var(--color-black);
+    border: rem(2) solid var(--color-black);
     border-radius: rem(5);
     font-size: rem(14);
     font-weight: 600;
@@ -135,14 +135,15 @@
     border-radius: 0 0 rem(15) rem(15);
     transition: 0.4s;
     &._open {
-      height: rem(180);
+      height: rem(240);
     }
-    &-auth {
+    &-btns {
       @include _768 {
         display: none;
       }
 
       display: block;
+      margin-top: auto;
       .header__button {
         max-width: calc(100% - rem(20));
         min-height: rem(45);
@@ -180,10 +181,52 @@
       }
     }
   }
-  &._scrolled {
-    // background-color: var(--color-white);
-    // .header__nav {
-    //   background-color: var(--color-white);
-    // }
+  &__lk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: calc(100% - rem(20));
+    min-height: rem(45);
+    margin: 0 auto rem(10);
+    color: var(--color-white);
+    background: var(--color-deepyellow);
+    border: rem(2) dashed var(--color-white);
+    border-radius: var(--border-radius-sm);
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: rem(20);
+    cursor: pointer;
+  }
+  // &._scrolled {
+  // background-color: var(--color-white);
+  // .header__nav {
+  //   background-color: var(--color-white);
+  // }
+  // }
+  &__aside {
+    @include _1200 {
+      max-width: rem(40);
+      min-height: rem(40);
+      margin-left: rem(5);
+    }
+
+    flex-shrink: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: rem(35);
+    min-height: rem(35);
+    margin-left: rem(10);
+    background: transparent;
+    border: rem(2) solid var(--color-black);
+    border-radius: rem(5);
+    font-size: rem(14);
+    font-weight: 600;
+    cursor: pointer;
+    &-pic {
+      max-width: rem(16);
+    }
   }
 }

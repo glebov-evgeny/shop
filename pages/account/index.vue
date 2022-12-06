@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popuIsShow" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-account-intro />
       <s-dump />
-      <s-popup :show="popuIsShow" @popupIsClosed="popupIsClosed">
+      <s-popup :show="popupIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
         <m-form-login v-if="!registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
       </s-popup>
@@ -27,7 +27,7 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      popuIsShow: false,
+      popupIsShow: false,
       registrationOrLoginForm: true,
     };
   },
@@ -35,14 +35,14 @@ export default {
     this.isUserLogged();
   },
   watch: {
-    popuIsShow() {
+    popupIsShow() {
       this.hideYScroll();
     },
   },
   methods: {
     hideYScroll() {
       const htmlWrapper = document.querySelector('html');
-      if (this.popuIsShow) {
+      if (this.popupIsShow) {
         htmlWrapper.style.overflow = 'hidden';
       } else {
         htmlWrapper.style.overflow = 'initial';
@@ -50,13 +50,13 @@ export default {
     },
 
     popupIsOpen() {
-      this.popuIsShow = true;
+      this.popupIsShow = true;
     },
     changeFormPopup() {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
     popupIsClosed() {
-      this.popuIsShow = false;
+      this.popupIsShow = false;
     },
     isUserLogged() {
       // Проверяю cookies, если user есть - беру значение в store
