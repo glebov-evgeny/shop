@@ -1,7 +1,7 @@
 <template>
   <div class="m-code">
-    <div class="card_test-code">
-      <p>{{ getCodes.code }}</p>
+    <div class="card_test-code" v-for="item in getCodes" :key="item.code">
+      <p>{{ item.code }}</p>
       <br /><br />
       <!-- <p>{{ item.createAt.toDate() }}</p> -->
     </div>
@@ -15,22 +15,26 @@ export default {
   name: 'm-form-code',
   props: {
     getCodes: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
   },
   data() {
     return {};
   },
   methods: {
-    showItem() {
-      // console.log('ddd');
-      // this.$set(this.getCodes, indexOfItem, newValue);
-    },
+    // showItem() {
+    // this.$set(this.getCodes, indexOfItem, newValue);
+    // },
   },
-  computed: {},
+  computed: {
+    // showItemItem() {
+    //   const currentItem = { clear: '1' };
+    //   return currentItem;
+    // },
+  },
   mounted() {
-    // this.showItem();
+    // showItemItem();
   },
 };
 </script>

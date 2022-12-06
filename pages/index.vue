@@ -42,11 +42,11 @@ import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue'
 import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
 
 // eslint-disable-next-line import/extensions
-// import getSuccessCode from '@/api/getSuccessCode';
+import getSuccessCode from '@/api/getSuccessCode';
 
-import {
-  getFirestore, collection, onSnapshot, query,
-} from 'firebase/firestore';
+// import {
+//   getFirestore, collection, onSnapshot, query,
+// } from 'firebase/firestore';
 
 export default {
   components: {
@@ -100,7 +100,7 @@ export default {
           isActive: false,
         },
       ],
-      getCodes: {},
+      getCodes: '',
     };
   },
   mounted() {
@@ -136,16 +136,7 @@ export default {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
     async cardClickHandler(item) {
-      const db = getFirestore();
-      const getData = await query(collection(db, `${item.region}_cards_${item.nominal}`));
-      onSnapshot(getData, (querySnapshot) => {
-        const response = [];
-        querySnapshot.forEach((doc) => {
-          response.push(doc.data());
-        });
-        const firstElement = response[0];
-        this.getCodes = firstElement;
-      });
+      this.getCodes = await getSuccessCode(item);
       this.showCurrentCode();
     },
     showCurrentCode() {

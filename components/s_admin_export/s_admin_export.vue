@@ -19,8 +19,8 @@
             <p class="admin_export__field-information">Номинал:</p>
             <MCardSelectNominal
               :toggleListNominal="toggleListNominal"
-              :nominalList="nominalList"
-              :nominalCurrent="nominalCurrent"
+              :nominalList="regionsCurrentText == 'US (United States)' ? nominalList : nominalListPol"
+              :nominalCurrent="regionsCurrentText == 'US (United States)' ? nominalCurrent : nominalCurrentPol"
               @toggleListHandlerNominal="toggleListHandlerNominal"
               @toggleOptionNominal="toggleOptionNominal"
             />
@@ -87,7 +87,19 @@ export default {
           code: 50,
         },
       ],
+      nominalListPol: [
+        {
+          code: 70,
+        },
+        {
+          code: 120,
+        },
+        {
+          code: 250,
+        },
+      ],
       nominalCurrent: 10,
+      nominalCurrentPol: 70,
       toggleList: false,
       toggleListNominal: false,
       listResult: null,
@@ -108,19 +120,35 @@ export default {
       this.toggleList = false;
     },
     toggleOptionNominal(codeRegion) {
-      this.nominalCurrent = Number(codeRegion);
+      if (this.regionsCurrentText === 'US (United States)') {
+        this.nominalCurrent = Number(codeRegion);
+      } else {
+        this.nominalCurrentPol = Number(codeRegion);
+      }
       this.toggleListNominal = false;
     },
     validateForm(e) {
       const randomId = Math.random();
-      const currentCardInformation = {
-        id: randomId,
-        region: this.regionsCurrent,
-        nominal: this.nominalCurrent,
-        code: this.code,
-        createAt: serverTimestamp(),
-        isActivated: false,
-      };
+      let currentCardInformation = {};
+      if (this.regionsCurrentText === 'US (United States)') {
+        currentCardInformation = {
+          id: randomId,
+          region: this.regionsCurrent,
+          nominal: this.nominalCurrent,
+          code: this.code,
+          createAt: serverTimestamp(),
+          isActivated: false,
+        };
+      } else {
+        currentCardInformation = {
+          id: randomId,
+          region: this.regionsCurrent,
+          nominal: this.nominalCurrentPol,
+          code: this.code,
+          createAt: serverTimestamp(),
+          isActivated: false,
+        };
+      }
 
       if (this.code == null) {
         this.codeError = true;

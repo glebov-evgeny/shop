@@ -1,18 +1,18 @@
 import {
-  getFirestore, collection, onSnapshot, query,
+  getFirestore, collection, onSnapshot, query, where,
 } from 'firebase/firestore';
 
 export default async function getSuccessCode(item) {
   const db = getFirestore();
-  const getData = query(collection(db, `${item.region}_cards_${item.nominal}`));
-  let currentObj;
-  await onSnapshot(getData, (querySnapshot) => {
-    const response = [];
+  const getData = await query(
+    collection(db, `${item.region}_cards_${item.nominal}`),
+    where('isActivated', '==', false),
+  );
+  const response = [];
+  onSnapshot(getData, (querySnapshot) => {
     querySnapshot.forEach((doc) => {
       response.push(doc.data());
     });
-    // eslint-disable-next-line prefer-destructuring
-    currentObj = response[0];
   });
-  return currentObj;
+  return response;
 }
