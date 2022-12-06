@@ -1,6 +1,7 @@
 <template>
   <div class="m-payments">
-    <button class="m-payments-btn" @click="successPayments">типа оплатил</button>
+    <p class="m-payments__title">перейти к оплате</p>
+    <button class="m-payments-btn" @click="successPayments(getCodes.id)">типа оплатил</button>
   </div>
 </template>
 
@@ -9,13 +10,18 @@ import './m_form_pay.scss';
 
 export default {
   name: 'm-form-pay',
-  props: {},
+  props: {
+    getCodes: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data() {
     return {};
   },
   methods: {
-    successPayments() {
-      this.$emit('successPayments');
+    successPayments(cardId) {
+      this.$emit('successPayments', cardId);
     },
   },
   computed: {},

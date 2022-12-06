@@ -95,7 +95,7 @@ export default {
       this.regionsCurrentText = currentObject.text;
       this.toggleList = false;
       /* Раскомментировать здесь */
-      // this.fetchCards();
+      this.fetchCards();
     },
     cardClickHandler(item) {
       this.$emit('cardClickHandler', item);

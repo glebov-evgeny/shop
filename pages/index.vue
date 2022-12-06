@@ -14,7 +14,7 @@
         <m-form-question v-if="isQuestionForm" />
         <m-form-payments v-if="isPaymentForm" />
         <m-form-code v-if="isSuccessCode" :getCodes="getCodes" />
-        <m-form-pay v-if="isPaymentPopup" @successPayments="successPayments" />
+        <m-form-pay v-if="isPaymentPopup" :getCodes="getCodes" @successPayments="successPayments" />
       </s-popup>
     </main>
     <s-footer />
@@ -39,7 +39,7 @@ import MFormPay from '@/components/_ui/m_form_pay/m_form_pay.vue';
 // import getSuccessCode from '@/api/getSuccessCode';
 
 import {
-  getFirestore, collection, onSnapshot, query, where,
+  getFirestore, setDoc, doc, collection, onSnapshot, query, where,
 } from 'firebase/firestore';
 
 export default {
@@ -137,14 +137,14 @@ export default {
       const getData = query(collection(db, `${item.region}_cards_${item.nominal}`), where('isActivated', '==', false));
       onSnapshot(getData, (querySnapshot) => {
         const response = [];
-        querySnapshot.forEach((doc) => {
-          response.push(doc.data());
+        querySnapshot.forEach((docitem) => {
+          response.push(docitem.data());
         });
         /* Если данные есть, устанавливаю 1 из списка в getCodes (для попапа после оплаты), если нет - ошибка. */
         if (response.length) {
           // eslint-disable-next-line prefer-destructuring
           this.getCodes = response[0];
-          // this.showCurrentCode();
+          /* симулирую платеж */
           this.paymentPopup();
         } else {
           console.log('no');
@@ -155,19 +155,32 @@ export default {
       this.popupIsShowContent = true;
       this.isPaymentPopup = true;
     },
-    successPayments() {
+    /* успешный ответ после оплаты */
+    successPayments(cardId) {
       this.isPaymentPopup = false;
-      this.showCurrentCode();
+      this.updateUserInfo(cardId);
+      // this.showCurrentCode(cardId);
     },
-    showCurrentCode() {
+    showCurrentCode(cardId) {
       this.popupIsShowContent = true;
       this.isSuccessCode = true;
+      console.log(cardId);
     },
+    /* закрыть попап */
     popupIsClosed() {
       this.popupIsShow = false;
       this.popupIsShowContent = false;
       this.isPaymentPopup = false;
       this.isSuccessCode = false;
+    },
+    async updateUserInfo(cardId) {
+      /* Определил текущего юзера */
+      const currentUser = this.$cookies.get('user').split(':')[2].split('"')[1];
+
+      /* Записал ему купленное. коллекция: user_КУКА, документ: id-карточки, контент: карточка  */
+      const db = getFirestore();
+      await setDoc(doc(db, `user_${currentUser}`, `${cardId}`), this.getCodes);
+      /*  */
     },
   },
   computed: {},
