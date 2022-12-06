@@ -42,11 +42,11 @@ import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue'
 import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
 
 // eslint-disable-next-line import/extensions
-import getSuccessCode from '@/api/getSuccessCode';
+// import getSuccessCode from '@/api/getSuccessCode';
 
-// import {
-//   getFirestore, collection, onSnapshot, query,
-// } from 'firebase/firestore';
+import {
+  getFirestore, collection, onSnapshot, query, where,
+} from 'firebase/firestore';
 
 export default {
   components: {
@@ -135,14 +135,24 @@ export default {
     changeFormPopup() {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
-    async cardClickHandler(item) {
-      const response = await getSuccessCode(item);
-      // this.getCodes = await getSuccessCode(item);
-      // this.showCurrentCode();
-      this.logicFirst(response);
-    },
-    logicFirst(response) {
-      console.log(response);
+    cardClickHandler(item) {
+      const db = getFirestore();
+      /* По клику на карточку с регионом и номиналом делаю запрос к БД, получаю только те карты, которые isActivated:false */
+      const getData = query(collection(db, `${item.region}_cards_${item.nominal}`), where('isActivated', '==', false));
+      onSnapshot(getData, (querySnapshot) => {
+        const response = [];
+        querySnapshot.forEach((doc) => {
+          response.push(doc.data());
+        });
+        /* Если данные есть, устанавливаю 1 из списка в getCodes (для попапа после оплаты), если нет - ошибка. */
+        if (response.length) {
+          // eslint-disable-next-line prefer-destructuring
+          this.getCodes = response[0];
+          this.showCurrentCode();
+        } else {
+          console.log('no');
+        }
+      });
     },
     showCurrentCode() {
       this.popuIsShowContent = true;

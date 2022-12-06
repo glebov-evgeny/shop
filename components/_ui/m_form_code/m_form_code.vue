@@ -1,7 +1,9 @@
 <template>
   <div class="m-code">
-    <div class="card_test-code" v-for="item in getCodes" :key="item.code">
-      <p>{{ item.code }}</p>
+    <div class="card_test-code">
+      <p>...</p>
+      <p>{{ getCodes.code }}</p>
+      <!-- <p>{{ item.code }}</p> -->
       <br /><br />
       <!-- <p>{{ item.createAt.toDate() }}</p> -->
     </div>
@@ -14,9 +16,13 @@ import './m_form_code.scss';
 export default {
   name: 'm-form-code',
   props: {
+    // getCodes: {
+    //   type: Array,
+    //   default: () => [],
+    // },
     getCodes: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
   },
   data() {
