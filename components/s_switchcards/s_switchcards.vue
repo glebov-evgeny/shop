@@ -100,9 +100,6 @@ export default {
     cardClickHandler(item) {
       this.$emit('cardClickHandler', item);
     },
-    // paymentsLogic(region, code) {
-    //   this.$emit('paymentsLogic', region, code);
-    // },
     popupIsOpen() {
       this.$emit('popupIsOpen');
     },

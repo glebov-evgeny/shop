@@ -136,8 +136,13 @@ export default {
       this.registrationOrLoginForm = !this.registrationOrLoginForm;
     },
     async cardClickHandler(item) {
-      this.getCodes = await getSuccessCode(item);
-      this.showCurrentCode();
+      const response = await getSuccessCode(item);
+      // this.getCodes = await getSuccessCode(item);
+      // this.showCurrentCode();
+      this.logicFirst(response);
+    },
+    logicFirst(response) {
+      console.log(response);
     },
     showCurrentCode() {
       this.popuIsShowContent = true;
