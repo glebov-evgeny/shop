@@ -1,6 +1,6 @@
 # This project was created for testing
 
-https://glebov-evgeny.github.io/gsap-nuxt/
+https://switch-store.shop/
 
 1) Nuxt/Vue
 2) Authentication / Registration with Firebase + @nuxtjs/auth-next
