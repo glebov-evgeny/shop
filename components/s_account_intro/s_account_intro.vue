@@ -2,6 +2,7 @@
   <section class="account_intro">
     <div class="container account_intro__container">
       <h1 class="account_intro__title" v-html="$t('title')"></h1>
+      <p class="account_intro__description" v-html="$t('description')"></p>
     </div>
   </section>
 </template>

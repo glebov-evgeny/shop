@@ -1,8 +1,10 @@
 {
   "ru": {
-    "title": "Эта страница <br /><span>личный кабинет пользователя</span>"
+    "title": "Эта страница <br /><span>личный кабинет пользователя</span>",
+    "description": "...смаллток..."
   },
   "en": {
-    "title": "This page <br /><span>about user information</span>"
+    "title": "This page <br /><span>about user information</span>",
+    "description": "...smalltalk..."
   }
 }

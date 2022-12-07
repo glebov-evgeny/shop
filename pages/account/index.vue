@@ -3,6 +3,7 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-account-intro />
+      <s-account-history />
       <s-dump />
       <s-popup :show="popupIsShow" @popupIsClosed="popupIsClosed">
         <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />

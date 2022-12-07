@@ -12,8 +12,8 @@
       </s-popup>
       <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
         <m-form-question v-if="isQuestionForm" />
-        <m-form-payments v-if="isPaymentForm" />
-        <m-form-code v-if="isSuccessCode" :getCodes="getCodes" />
+        <!-- <m-form-payments v-if="isPaymentForm" /> -->
+        <m-form-code v-if="isSuccessCode" :getCodes="currentCode" />
         <m-form-pay v-if="isPaymentPopup" :getCodes="getCodes" @successPayments="successPayments" />
       </s-popup>
     </main>
@@ -29,7 +29,7 @@ import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
 // eslint-disable-next-line import/extensions
 import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue';
 // eslint-disable-next-line import/extensions
-import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
+// import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
 // eslint-disable-next-line import/extensions
 import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
 // eslint-disable-next-line import/extensions
@@ -39,7 +39,7 @@ import MFormPay from '@/components/_ui/m_form_pay/m_form_pay.vue';
 // import getSuccessCode from '@/api/getSuccessCode';
 
 import {
-  getFirestore, setDoc, doc, collection, onSnapshot, query, where,
+  getFirestore, setDoc, doc, collection, onSnapshot, query, where, deleteDoc,
 } from 'firebase/firestore';
 
 export default {
@@ -47,7 +47,7 @@ export default {
     MFormRegistration,
     MFormLogin,
     MFormQuestion,
-    MFormPayments,
+    // MFormPayments,
     MFormCode,
     MFormPay,
   },
@@ -97,6 +97,7 @@ export default {
         },
       ],
       getCodes: '',
+      currentCode: '',
     };
   },
   mounted() {
@@ -157,14 +158,11 @@ export default {
     },
     /* успешный ответ после оплаты */
     successPayments(cardId) {
-      this.isPaymentPopup = false;
       this.updateUserInfo(cardId);
-      // this.showCurrentCode(cardId);
     },
-    showCurrentCode(cardId) {
+    showCurrentCode() {
       this.popupIsShowContent = true;
       this.isSuccessCode = true;
-      console.log(cardId);
     },
     /* закрыть попап */
     popupIsClosed() {
@@ -177,10 +175,19 @@ export default {
       /* Определил текущего юзера */
       const currentUser = this.$cookies.get('user').split(':')[2].split('"')[1];
 
-      /* Записал ему купленное. коллекция: user_КУКА, документ: id-карточки, контент: карточка  */
+      /* 1. Записал ему купленное. коллекция: user_КУКА, документ: id-карточки, контент: карточка. Они отобразятся в личном кабинете  */
       const db = getFirestore();
       await setDoc(doc(db, `user_${currentUser}`, `${cardId}`), this.getCodes);
-      /*  */
+
+      /* 2. Показываю попап с кодом */
+      this.currentCode = this.getCodes;
+      setTimeout(() => {
+        this.showCurrentCode();
+      }, 2000);
+
+      /* 3. Удаляю карточку из БД */
+      const ref = doc(db, `${this.getCodes.region}_cards_${this.getCodes.nominal}`, `${cardId}`);
+      deleteDoc(ref);
     },
   },
   computed: {},

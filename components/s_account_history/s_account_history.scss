@@ -1,12 +1,12 @@
 @import '@/assets/styles/tools/mixins';
 
-.account_intro {
+.account_history {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: rem(150);
   padding: rem(15) 0;
-  background: #fde8e8;
+  background: #818181;
   &__title {
     @include _768 {
       font-size: rem(16);
@@ -21,19 +21,16 @@
     text-align: center;
     text-transform: uppercase;
   }
-  &__description {
-    @include _768 {
-      font-size: rem(12);
-      text-align: center;
-    }
-    @include _1200 {
-      font-size: rem(14);
-    }
-
-    margin-top: rem(30);
-    font-size: rem(10);
-    font-weight: 900;
-    line-height: 135%;
-    text-align: center;
+  &__wrapper {
+    margin-top: rem(40);
+  }
+  &__block {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
