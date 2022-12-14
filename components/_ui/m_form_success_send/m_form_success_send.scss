@@ -1,0 +1,17 @@
+@import '@/assets/styles/tools/mixins';
+
+.m_form_success_send {
+  &__title {
+    font-size: rem(24);
+    line-height: 135%;
+  }
+  &__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__info {
+    font-size: rem(14);
+    line-height: 135%;
+  }
+}

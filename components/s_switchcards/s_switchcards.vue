@@ -25,16 +25,6 @@
           @cardClickHandler="cardClickHandler"
         />
       </div>
-      <!-- <div class="card_test">
-        <button
-          class="card_test-button"
-          v-if="this.$store.state.token"
-          @click="cardClickHandler({ region: 'usa', nominal: 10 })"
-        >
-          Если залогиненен
-        </button>
-        <button class="card_test-button" v-else @click.stop="popupIsOpen">Если не залогинен</button>
-      </div> -->
     </div>
     <div class="switchcards__diagonal"></div>
   </section>

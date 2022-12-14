@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'pageadmin',
   components: {},
   middleware: 'auth',
   data() {

@@ -37,10 +37,7 @@
       </div>
     </div>
     <div class="form__wrapper" v-else>
-      <div class="form__info _center">
-        <h3 class="form__title">Пасиба!</h3>
-        <p class="form__description">всё ок</p>
-      </div>
+      <MFormSuccessSend />
     </div>
   </form>
 </template>
@@ -48,6 +45,8 @@
 <script>
 import '../m_form/m_form';
 import redirectUser from '~/api/redirectUser';
+// eslint-disable-next-line import/extensions
+import MFormSuccessSend from '@/components/_ui/m_form_success_send/m_form_success_send.vue';
 
 export default {
   name: 'm-form-login',
@@ -56,6 +55,9 @@ export default {
       type: String,
       default: '',
     },
+  },
+  components: {
+    MFormSuccessSend,
   },
   data() {
     return {

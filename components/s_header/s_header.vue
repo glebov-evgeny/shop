@@ -142,10 +142,10 @@ export default {
       }
     },
     logout() {
-      console.log('rkbr');
       this.$store.dispatch('logout');
       this.$cookies.remove('user');
       this.$router.push('/');
+      this.closeMenu();
     },
   },
 

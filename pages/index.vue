@@ -10,19 +10,11 @@
         v-if="popupIsShow"
         :currenForm="currenForm"
         :getCodes="getCodes"
+        :currentCode="currentCode"
         @popupIsClosed="popupIsClosed"
         @changeFormRegLog="changeFormRegLog"
         @successPayments="successPayments"
       />
-
-      <!-- <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
-        <m-form-question v-if="isQuestionForm" />
-        <m-form-payments v-if="isPaymentForm" />
-        <m-form-registration v-if="registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
-        <m-form-login v-if="!registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
-        <m-form-code v-if="isSuccessCode" :getCodes="currentCode" />
-        <m-form-pay v-if="isPaymentPopup" :getCodes="getCodes" @successPayments="successPayments" />
-      </s-popup> -->
     </main>
     <s-footer />
   </div>
@@ -34,11 +26,12 @@ import {
 } from 'firebase/firestore';
 
 export default {
+  name: 'pagemain',
   components: {},
   data() {
     return {
       popupIsShow: false,
-      currenForm: 'registration',
+      currenForm: 'login',
       questions: [
         {
           title: 'Что такое подарочная карта Nintendo eShop?',
@@ -76,7 +69,7 @@ export default {
         },
       ],
       getCodes: {},
-      currentCode: '',
+      currentCode: {},
     };
   },
   mounted() {
@@ -108,11 +101,14 @@ export default {
     popupIsOpen() {
       this.popupIsShow = true;
     },
+    popupIsClosed() {
+      this.popupIsShow = false;
+    },
     changeFormRegLog() {
-      if (this.currenForm === 'registration') {
-        this.currenForm = 'login';
-      } else {
+      if (this.currenForm === 'login') {
         this.currenForm = 'registration';
+      } else {
+        this.currenForm = 'login';
       }
     },
     cardClickHandler(item) {
@@ -149,16 +145,11 @@ export default {
     },
     /* успешный ответ после оплаты */
     successPayments(cardId) {
-      // console.log(cardId);
       this.updateUserInfo(cardId);
     },
-    // showCurrentCode() {
-    //   this.popupIsShowContent = true;
-    //   this.isSuccessCode = true;
-    // },
-    /* закрыть попап */
-    popupIsClosed() {
-      this.popupIsShow = false;
+    showCurrentCode() {
+      this.popupIsShow = true;
+      this.currenForm = 'formcode';
     },
     async updateUserInfo(cardId) {
       /* Определил текущего юзера */
@@ -170,9 +161,9 @@ export default {
 
       /* 2. Показываю попап с кодом */
       this.currentCode = this.getCodes;
-      // setTimeout(() => {
-      //   this.showCurrentCode();
-      // }, 2000);
+      setTimeout(() => {
+        this.showCurrentCode();
+      }, 3000);
 
       /* 3. Удаляю карточку из БД */
       const ref = doc(db, `${this.getCodes.region}_cards_${this.getCodes.nominal}`, `${cardId}`);

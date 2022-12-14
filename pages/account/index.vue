@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'pageaccount',
   components: {},
   middleware: 'auth',
   data() {
@@ -28,6 +29,7 @@ export default {
   },
   mounted() {
     this.isUserLogged();
+    this.hideYScroll();
   },
   watch: {
     popupIsShow() {

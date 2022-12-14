@@ -1,7 +1,7 @@
 {
   "ru": {
     "title": "Войти",
-    "description": "Укажите вашу почту и пароль:",
+    "description": "Укажите вашу почту и пароль: (testtest@mail.ru/testtest)",
     "email": "Почта",
     "password": "Пароль",
     "send": "Отправить",

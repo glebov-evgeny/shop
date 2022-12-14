@@ -4,6 +4,7 @@
       <MFormRegistration v-if="currenForm === 'registration'" @changeFormRegLog="changeFormRegLog" />
       <MFormLogin v-if="currenForm === 'login'" @changeFormRegLog="changeFormRegLog" />
       <MFormPay v-if="currenForm === 'formpay'" :getCodes="getCodes" @successPayments="successPayments" />
+      <MFormCode v-if="currenForm === 'formcode'" :currentCode="currentCode" />
     </div>
   </div>
 </template>
@@ -15,6 +16,8 @@ import MFormRegistration from '@/components/_ui/m_form_registration/m_form_regis
 import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
 // eslint-disable-next-line import/extensions
 import MFormPay from '@/components/_ui/m_form_pay/m_form_pay.vue';
+// eslint-disable-next-line import/extensions
+import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
 
 import './s_popup.scss';
 
@@ -23,9 +26,13 @@ export default {
   props: {
     currenForm: {
       type: String,
-      default: 'registration',
+      default: 'login',
     },
     getCodes: {
+      type: Object,
+      default: () => {},
+    },
+    currentCode: {
       type: Object,
       default: () => {},
     },
@@ -34,6 +41,7 @@ export default {
     MFormRegistration,
     MFormLogin,
     MFormPay,
+    MFormCode,
   },
   data() {
     return {};
