@@ -3,63 +3,40 @@
     <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-intro />
-      <s-switchcards @popupIsOpen="popupIsOpen" @cardClickHandler="cardClickHandler" />
+      <s-switchcards @cardClickHandler="cardClickHandler" />
       <s-faq :questions="questions" />
       <!-- <s-dump /> -->
-      <s-popup :show="popupIsShow" @popupIsClosed="popupIsClosed">
+      <s-popup
+        v-if="popupIsShow"
+        :currenForm="currenForm"
+        @popupIsClosed="popupIsClosed"
+        @changeFormRegLog="changeFormRegLog"
+      />
+
+      <!-- <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
+        <m-form-question v-if="isQuestionForm" />
+        <m-form-payments v-if="isPaymentForm" />
         <m-form-registration v-if="registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
         <m-form-login v-if="!registrationOrLoginForm" @changeFormPopup="changeFormPopup" />
-      </s-popup>
-      <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
-        <m-form-question v-if="isQuestionForm" />
-        <!-- <m-form-payments v-if="isPaymentForm" /> -->
         <m-form-code v-if="isSuccessCode" :getCodes="currentCode" />
         <m-form-pay v-if="isPaymentPopup" :getCodes="getCodes" @successPayments="successPayments" />
-      </s-popup>
+      </s-popup> -->
     </main>
     <s-footer />
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
-import MFormRegistration from '@/components/_ui/m_form_registration/m_form_registration.vue';
-// eslint-disable-next-line import/extensions
-import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
-// eslint-disable-next-line import/extensions
-import MFormQuestion from '@/components/_ui/m_form_question/m_form_question.vue';
-// eslint-disable-next-line import/extensions
-// import MFormPayments from '@/components/_ui/m_form_payments/m_form_payments.vue';
-// eslint-disable-next-line import/extensions
-import MFormCode from '@/components/_ui/m_form_code/m_form_code.vue';
-// eslint-disable-next-line import/extensions
-import MFormPay from '@/components/_ui/m_form_pay/m_form_pay.vue';
-
-// eslint-disable-next-line import/extensions
-// import getSuccessCode from '@/api/getSuccessCode';
-
 import {
   getFirestore, setDoc, doc, collection, onSnapshot, query, where, deleteDoc,
 } from 'firebase/firestore';
 
 export default {
-  components: {
-    MFormRegistration,
-    MFormLogin,
-    MFormQuestion,
-    // MFormPayments,
-    MFormCode,
-    MFormPay,
-  },
+  components: {},
   data() {
     return {
       popupIsShow: false,
-      popupIsShowContent: false,
-      registrationOrLoginForm: false,
-      isPaymentForm: false,
-      isQuestionForm: false,
-      isSuccessCode: false,
-      isPaymentPopup: false,
+      currenForm: 'registration',
       questions: [
         {
           title: 'Что такое подарочная карта Nintendo eShop?',
@@ -129,8 +106,12 @@ export default {
     popupIsOpen() {
       this.popupIsShow = true;
     },
-    changeFormPopup() {
-      this.registrationOrLoginForm = !this.registrationOrLoginForm;
+    changeFormRegLog() {
+      if (this.currenForm === 'registration') {
+        this.currenForm = 'login';
+      } else {
+        this.currenForm = 'registration';
+      }
     },
     cardClickHandler(item) {
       const db = getFirestore();
@@ -148,28 +129,25 @@ export default {
           /* симулирую платеж */
           this.paymentPopup();
         } else {
-          console.log('no');
+          console.log('no code here');
         }
       });
     },
     paymentPopup() {
-      this.popupIsShowContent = true;
-      this.isPaymentPopup = true;
+      this.popupIsShow = true;
+      this.currenForm = 'formpay';
     },
     /* успешный ответ после оплаты */
-    successPayments(cardId) {
-      this.updateUserInfo(cardId);
-    },
-    showCurrentCode() {
-      this.popupIsShowContent = true;
-      this.isSuccessCode = true;
-    },
+    // successPayments(cardId) {
+    //   this.updateUserInfo(cardId);
+    // },
+    // showCurrentCode() {
+    //   this.popupIsShowContent = true;
+    //   this.isSuccessCode = true;
+    // },
     /* закрыть попап */
     popupIsClosed() {
       this.popupIsShow = false;
-      this.popupIsShowContent = false;
-      this.isPaymentPopup = false;
-      this.isSuccessCode = false;
     },
     async updateUserInfo(cardId) {
       /* Определил текущего юзера */
@@ -181,9 +159,9 @@ export default {
 
       /* 2. Показываю попап с кодом */
       this.currentCode = this.getCodes;
-      setTimeout(() => {
-        this.showCurrentCode();
-      }, 2000);
+      // setTimeout(() => {
+      //   this.showCurrentCode();
+      // }, 2000);
 
       /* 3. Удаляю карточку из БД */
       const ref = doc(db, `${this.getCodes.region}_cards_${this.getCodes.nominal}`, `${cardId}`);

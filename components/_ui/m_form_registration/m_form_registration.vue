@@ -139,7 +139,7 @@ export default {
       }
     },
     changeFormLoginOrRegistration() {
-      this.$emit('changeFormPopup');
+      this.$emit('changeFormRegLog');
     },
   },
 };

@@ -5,31 +5,24 @@
       <s-admin-intro />
       <s-admin-export />
       <s-dump />
-      <s-popup :show="popupIsShow" @popupIsClosed="popupIsClosed">
-        <m-form-registration v-if="registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
-        <m-form-login v-if="!registrationOrLoginForm" className="_compact" @changeFormPopup="changeFormPopup" />
-      </s-popup>
+      <s-popup
+        v-if="popupIsShow"
+        :currenForm="currenForm"
+        @popupIsClosed="popupIsClosed"
+        @changeFormRegLog="changeFormRegLog"
+      />
     </main>
     <s-footer />
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
-import MFormRegistration from '@/components/_ui/m_form_registration/m_form_registration.vue';
-// eslint-disable-next-line import/extensions
-import MFormLogin from '@/components/_ui/m_form_login/m_form_login.vue';
-
 export default {
-  components: {
-    MFormRegistration,
-    MFormLogin,
-  },
+  components: {},
   middleware: 'auth',
   data() {
     return {
       popupIsShow: false,
-      registrationOrLoginForm: false,
     };
   },
   mounted() {
@@ -54,11 +47,15 @@ export default {
     popupIsOpen() {
       this.popupIsShow = true;
     },
-    changeFormPopup() {
-      this.registrationOrLoginForm = !this.registrationOrLoginForm;
-    },
     popupIsClosed() {
       this.popupIsShow = false;
+    },
+    changeFormRegLog() {
+      if (this.currenForm === 'registration') {
+        this.currenForm = 'login';
+      } else {
+        this.currenForm = 'registration';
+      }
     },
     isUserLogged() {
       // Проверяю cookies, если user есть - беру значение в store

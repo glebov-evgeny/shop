@@ -165,7 +165,7 @@ export default {
       await redirectUser(this.$router, this.$cookies);
     },
     changeFormLoginOrRegistration() {
-      this.$emit('changeFormPopup');
+      this.$emit('changeFormRegLog');
     },
   },
 };
