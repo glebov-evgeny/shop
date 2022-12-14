@@ -9,8 +9,10 @@
       <s-popup
         v-if="popupIsShow"
         :currenForm="currenForm"
+        :getCodes="getCodes"
         @popupIsClosed="popupIsClosed"
         @changeFormRegLog="changeFormRegLog"
+        @successPayments="successPayments"
       />
 
       <!-- <s-popup :show="popupIsShowContent" @popupIsClosed="popupIsClosed">
@@ -73,7 +75,7 @@ export default {
           isActive: false,
         },
       ],
-      getCodes: '',
+      getCodes: {},
       currentCode: '',
     };
   },
@@ -114,33 +116,42 @@ export default {
       }
     },
     cardClickHandler(item) {
-      const db = getFirestore();
-      /* По клику на карточку с регионом и номиналом делаю запрос к БД, получаю только те карты, которые isActivated:false */
-      const getData = query(collection(db, `${item.region}_cards_${item.nominal}`), where('isActivated', '==', false));
-      onSnapshot(getData, (querySnapshot) => {
-        const response = [];
-        querySnapshot.forEach((docitem) => {
-          response.push(docitem.data());
+      /* Покупка возможна только для зарегистрированных пользователей */
+      if (this.$cookies.get('user')) {
+        const db = getFirestore();
+        /* По клику на карточку с регионом и номиналом делаю запрос к БД, получаю только те карты, которые isActivated:false */
+        const getData = query(
+          collection(db, `${item.region}_cards_${item.nominal}`),
+          where('isActivated', '==', false),
+        );
+        onSnapshot(getData, (querySnapshot) => {
+          const response = [];
+          querySnapshot.forEach((docitem) => {
+            response.push(docitem.data());
+          });
+          /* Если данные есть, устанавливаю 1 из списка в getCodes (для попапа после оплаты), если нет - ошибка. */
+          if (response.length) {
+            // eslint-disable-next-line prefer-destructuring
+            this.getCodes = response[0];
+            /* симулирую платеж */
+            this.paymentPopup();
+          } else {
+            console.log('no code here');
+          }
         });
-        /* Если данные есть, устанавливаю 1 из списка в getCodes (для попапа после оплаты), если нет - ошибка. */
-        if (response.length) {
-          // eslint-disable-next-line prefer-destructuring
-          this.getCodes = response[0];
-          /* симулирую платеж */
-          this.paymentPopup();
-        } else {
-          console.log('no code here');
-        }
-      });
+      } else {
+        this.popupIsOpen();
+      }
     },
     paymentPopup() {
       this.popupIsShow = true;
       this.currenForm = 'formpay';
     },
     /* успешный ответ после оплаты */
-    // successPayments(cardId) {
-    //   this.updateUserInfo(cardId);
-    // },
+    successPayments(cardId) {
+      // console.log(cardId);
+      this.updateUserInfo(cardId);
+    },
     // showCurrentCode() {
     //   this.popupIsShowContent = true;
     //   this.isSuccessCode = true;

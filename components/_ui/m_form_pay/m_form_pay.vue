@@ -1,7 +1,7 @@
 <template>
   <div class="m-payments">
-    <p class="m-payments__title">перейти к оплате</p>
-    <button class="m-payments-btn" @click="successPayments(getCodes.id)">типа оплатил</button>
+    <p class="m-payments__title">Попап с этапом оплаты</p>
+    <button class="m-payments-btn" @click="successPayments(getCodes.id)">симуляци успешной оплаты</button>
   </div>
 </template>
 

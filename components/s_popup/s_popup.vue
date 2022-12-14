@@ -3,7 +3,7 @@
     <div @click.stop class="s_popup__content">
       <MFormRegistration v-if="currenForm === 'registration'" @changeFormRegLog="changeFormRegLog" />
       <MFormLogin v-if="currenForm === 'login'" @changeFormRegLog="changeFormRegLog" />
-      <MFormPay v-if="currenForm === 'formpay'" />
+      <MFormPay v-if="currenForm === 'formpay'" :getCodes="getCodes" @successPayments="successPayments" />
     </div>
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
       type: String,
       default: 'registration',
     },
+    getCodes: {
+      type: Object,
+      default: () => {},
+    },
   },
   components: {
     MFormRegistration,
@@ -40,6 +44,9 @@ export default {
     },
     changeFormRegLog() {
       this.$emit('changeFormRegLog');
+    },
+    successPayments(cardId) {
+      this.$emit('successPayments', cardId);
     },
   },
 };
