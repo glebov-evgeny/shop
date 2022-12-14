@@ -1,8 +1,11 @@
 @import '@/assets/styles/tools/mixins';
 
 .footer {
-  min-height: rem(50);
-  padding: 1rem 0;
+  @include _768 {
+    padding: rem(20) 0;
+  }
+
+  padding: rem(20) 0;
   color: var(--color-white);
   background: var(--color-black);
   &__container {
@@ -24,5 +27,12 @@
         font-weight: 900;
       }
     }
+  }
+  &._fixed {
+    @include _768 {
+      padding: rem(20) 0;
+    }
+
+    padding: rem(20) 0 rem(64);
   }
 }

@@ -39,6 +39,7 @@
     &-title {
       font-size: rem(18);
       font-weight: 900;
+      cursor: pointer;
     }
     &-top {
       position: relative;
@@ -56,6 +57,7 @@
       font-size: rem(16);
       line-height: 135%;
       transition: all 0.8s ease-in-out;
+      transform: translateY(rem(-10));
     }
     &-arrow {
       position: relative;
@@ -71,7 +73,7 @@
         width: rem(15);
         height: rem(2);
         background: var(--color-white);
-        transition: 0.8s;
+        transition: 0.5s;
         transform: translate(-50%, -50%);
       }
       &::before {
@@ -82,7 +84,7 @@
         width: rem(2);
         height: rem(15);
         background: var(--color-white);
-        transition: 0.8s;
+        transition: 0.5s;
         transform: translate(-50%, -50%);
       }
     }
@@ -92,6 +94,7 @@
           height: auto;
           opacity: 1;
           transition: all 0.8s;
+          transform: translateY(0);
         }
         &-arrow {
           &::before {

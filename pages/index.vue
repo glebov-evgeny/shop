@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" :fixedBtn="fixedBtn" />
     <main class="main">
       <s-intro />
       <s-switchcards @cardClickHandler="cardClickHandler" />
@@ -16,7 +16,7 @@
         @successPayments="successPayments"
       />
     </main>
-    <s-footer />
+    <s-footer :fixedBtn="fixedBtn" />
   </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
     return {
       popupIsShow: false,
       currenForm: 'login',
+      fixedBtn: true,
       questions: [
         {
           title: 'Что такое подарочная карта Nintendo eShop?',

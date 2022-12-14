@@ -20,7 +20,8 @@
     "login": "Войти",
     "logout": "Выйти",
     "lk": "Личный кабинет",
-    "lk_short": "ЛК"
+    "lk_short": "ЛК",
+    "fixed_btn": "Задать вопрос"
   },
   "en": {
     "menuItems": [
@@ -43,6 +44,7 @@
     "login": "Log in",
     "logout": "Log out",
     "lk": "user information",
-    "lk_short": "UI"
+    "lk_short": "UI",
+    "fixed_btn": "Ask something"
   }
 }

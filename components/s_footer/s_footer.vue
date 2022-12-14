@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" :class="fixedBtn ? '_fixed' : ''">
     <div class="container footer__container">
       <p class="footer__date">&#169; {{ new Date().getFullYear() }}. {{ $t('dateinfo') }}</p>
       <div class="footer__lang">
@@ -16,14 +16,14 @@ import './s_footer.scss';
 
 export default {
   name: 's-footer',
+  props: {
+    fixedBtn: {
+      type: Boolean,
+    },
+  },
   data() {
     return {};
   },
-  computed: {},
-  watch: {},
-  methods: {},
-  beforeDestroy() {},
-  mounted() {},
 };
 </script>
 

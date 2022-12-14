@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" :fixedBtn="fixedBtn" />
     <main class="main">
       <s-account-intro />
       <s-account-history />
@@ -12,7 +12,7 @@
         @changeFormRegLog="changeFormRegLog"
       />
     </main>
-    <s-footer />
+    <s-footer :fixedBtn="fixedBtn" />
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       popupIsShow: false,
-      registrationOrLoginForm: true,
+      fixedBtn: false,
     };
   },
   mounted() {
