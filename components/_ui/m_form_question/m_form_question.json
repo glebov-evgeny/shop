@@ -1,0 +1,18 @@
+{
+  "ru": {
+    "title": "Задать вопрос",
+    "description": "...",
+    "name": "Имя",
+    "email": "Почта",
+    "text": "Оставьте ваше сообщение",
+    "send": "Отправить"
+  },
+  "en": {
+    "title": "Ask a Question",
+    "description": "...",
+    "name": "name",
+    "email": "email",
+    "text": "Leave your message",
+    "send": "send"
+  }
+}

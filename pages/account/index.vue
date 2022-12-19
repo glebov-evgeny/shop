@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" :fixedBtn="fixedBtn" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-account-intro />
       <s-account-history />
@@ -12,7 +12,7 @@
         @changeFormRegLog="changeFormRegLog"
       />
     </main>
-    <s-footer :fixedBtn="fixedBtn" />
+    <s-footer @fixedBtnHandler="fixedBtnHandler" :fixedBtn="fixedBtn" />
   </div>
 </template>
 

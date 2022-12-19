@@ -113,27 +113,6 @@
     font-weight: 600;
     cursor: pointer;
   }
-  &__bottom {
-    position: fixed;
-    left: 0;
-    bottom: rem(10);
-    width: 100%;
-    &-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: calc(100% - rem(30));
-      min-height: rem(45);
-      margin: 0 auto;
-      color: var(--color-black);
-      background-color: var(--color-yellow);
-      border: none;
-      border-radius: var(--border-radius-sm);
-      font-size: rem(16);
-      font-weight: 900;
-      cursor: pointer;
-    }
-  }
   &__nav {
     @include _768 {
       position: unset;

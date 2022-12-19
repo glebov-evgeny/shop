@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" :fixedBtn="fixedBtn" />
+    <s-header @popupIsOpen="popupIsOpen" :popupIsClosed="popupIsShow" />
     <main class="main">
       <s-intro />
       <s-switchcards @cardClickHandler="cardClickHandler" />
@@ -16,7 +16,7 @@
         @successPayments="successPayments"
       />
     </main>
-    <s-footer :fixedBtn="fixedBtn" />
+    <s-footer :fixedBtn="fixedBtn" @fixedBtnHandler="fixedBtnHandler" />
   </div>
 </template>
 
@@ -100,10 +100,15 @@ export default {
       }
     },
     popupIsOpen() {
+      this.currenForm = 'login';
       this.popupIsShow = true;
     },
     popupIsClosed() {
       this.popupIsShow = false;
+    },
+    fixedBtnHandler() {
+      this.popupIsShow = true;
+      this.currenForm = 'formquestion';
     },
     changeFormRegLog() {
       if (this.currenForm === 'login') {

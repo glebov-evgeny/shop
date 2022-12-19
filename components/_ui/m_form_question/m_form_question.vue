@@ -2,8 +2,8 @@
   <form class="form" :class="currentClass" @submit="validateForm">
     <div class="form__wrapper" v-if="formWasSend">
       <div class="form__info">
-        <h3 class="form__title">This is form title</h3>
-        <p class="form__description">Just simpl form description text for information users.</p>
+        <h3 class="form__title">{{ $t('title') }}</h3>
+        <!-- <p class="form__description">{{ $t('description') }}</p> -->
       </div>
       <div class="form__content">
         <label class="form__label">
@@ -12,7 +12,7 @@
             type="text"
             class="form__input"
             :class="nameError ? 'error' : ''"
-            placeholder="Имя"
+            :placeholder="$t('name')"
           />
         </label>
         <label class="form__label">
@@ -21,24 +21,23 @@
             type="email"
             class="form__input"
             :class="emailError ? 'error' : ''"
-            placeholder="Почта"
+            :placeholder="$t('email')"
           />
         </label>
-        <textarea v-model.trim="text" class="form__textarea" placeholder="Text"></textarea>
-        <button class="form__button" type="submit">Отправить</button>
+        <textarea v-model.trim="text" class="form__textarea" :placeholder="$t('text')"></textarea>
+        <button class="form__button" type="submit">{{ $t('send') }}</button>
       </div>
     </div>
     <div class="form__wrapper" v-else>
-      <div class="form__info _center">
-        <h3 class="form__title">Пасиба!</h3>
-        <p class="form__description">всё ок</p>
-      </div>
+      <MFormSuccessSend />
     </div>
   </form>
 </template>
 
 <script>
 import '../m_form/m_form';
+// eslint-disable-next-line import/extensions
+import MFormSuccessSend from '@/components/_ui/m_form_success_send/m_form_success_send.vue';
 
 export default {
   name: 'm-form-question',
@@ -59,6 +58,9 @@ export default {
       formWasSend: true,
       currentClass: this.className,
     };
+  },
+  components: {
+    MFormSuccessSend,
   },
   methods: {
     validateForm(e) {
@@ -112,3 +114,5 @@ export default {
   },
 };
 </script>
+
+<i18n lang="json" src="./m_form_question.json" />

@@ -1,8 +1,10 @@
 {
   "ru": {
-    "dateinfo": "Разработка, продвижение, etc."
+    "dateinfo": "Разработка, продвижение, etc.",
+    "fixed_btn": "Задать вопрос"
   },
   "en": {
-    "dateinfo": "Development, promotion, etc."
+    "dateinfo": "Development, promotion, etc.",
+    "fixed_btn": "Ask something"
   }
 }

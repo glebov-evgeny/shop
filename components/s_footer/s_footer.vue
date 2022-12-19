@@ -8,6 +8,9 @@
         <nuxt-link :to="switchLocalePath('en')" class="footer__lang-icon">En</nuxt-link>
       </div>
     </div>
+    <div class="footer__bottom">
+      <button v-if="fixedBtn" class="footer__bottom-btn" @click.stop="fixedBtnHandler">{{ $t('fixed_btn') }}</button>
+    </div>
   </footer>
 </template>
 
@@ -23,6 +26,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    fixedBtnHandler() {
+      this.$emit('fixedBtnHandler');
+    },
   },
 };
 </script>

@@ -58,9 +58,6 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="header__bottom" v-if="showMenuButton">
-        <button v-if="fixedBtn" class="header__bottom-btn">{{ $t('fixed_btn') }}</button>
-      </div>
     </div>
   </header>
 </template>
@@ -74,9 +71,6 @@ export default {
     popupIsClosed: {
       type: Boolean,
       default: true,
-    },
-    fixedBtn: {
-      type: Boolean,
     },
   },
   data() {
